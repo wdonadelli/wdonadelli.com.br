@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html class="wd">
+
+	<head>
+		<title>WDonadelli - Carrossel</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="HTML, CSS, javaScript, C, programação, slide, carrossel" />
+		<meta name="author" content="Willian Donadelli"/>
+		<meta name="description" content="Como contruir um carrossel de elementos com a biblioteca wd" />
+		<meta name="rating" content="general" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
+		<link  href="../../wd/v3/wd/wd.css" rel="stylesheet" />
+	</head>
+
+<body data-wd-device="desktop{wd-center}" class="wd-bg-black">
+
+	<main class="wd-bg-white wd-report wd-border-box wd-padding-length">
+
+		<h1 class="wd-case-caps">Carrossel de Elementos</h1>
+		
+		<h2>Construindo um carrossel de elementos com a biblioteca wd</h2>
+
+		<h3>Apresentação</h3>
+
+		<p>O objetivo deste tutorial é descrever a construção de um <q>carrossel</q> de elementos cujo propósito é exibir um elemento filho de cada vez na tela, seja de forma manual ou automática.</p>
+
+		<p>O manual da biblioteca wd pode ser encontrado no link <a href="https://github.com/wdonadelli/wd/wiki" class="wd-attr-href"></a>.</p>
+
+		<h3>Elementos Básicos</h3>
+
+		<p>Para demonstrar a construção do carrossel, será estabelecido um container pai contendo quatro elementos filhos, conforme abaixo apresentado:</p>
+		
+		<div>
+			<div>Slide 1</div>
+			<div>Slide 2</div>
+			<div>Slide 3</div>
+			<div>Slide 4</div>
+		</div>
+		
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div</kbd>
+	<kbd>div</kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div</kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div</kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div</kbd>Slide 4<kbd>/div</kbd>
+<kbd>/div</kbd></pre>
+
+		<p>Para melhorar a visualização, cada elemento filho receberá uma altura de <var>150px</var>, fonte com tamhamo maior, em negrito e centralizada e uma coloração diferente:</p>
+
+		<div class="wd-b wd-size-xlarge wd-align-center">
+			<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
+			<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
+			<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
+			<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
+		</div>
+		
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
+	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+<kbd>/div</kbd></pre>
+
+		<h3>Exibição Manual</h3>
+
+		<p>Nesta fase serão contruídos os elementos de interação para exibir cada <q>slide</q> de forma individual.</p>
+		
+		<p>Para isso, cada elemento filho será contemplado com um identificador (<code>id</code>) e será necessário contruir um navegador para manipular o slide a ser exibido. Esse navegador possibilitará escolher o elemento específico e também o anterior ou posterior:</p>
+
+		<div class="wd-b wd-size-xlarge wd-align-center">
+			<div style="height: 150px;" id="slide1" class="wd-bg-blue"  >Slide 1</div>
+			<div style="height: 150px;" id="slide2" class="wd-bg-red"   >Slide 2</div>
+			<div style="height: 150px;" id="slide3" class="wd-bg-green" >Slide 3</div>
+			<div style="height: 150px;" id="slide4" class="wd-bg-black" >Slide 4</div>
+		</div>
+
+		<nav>
+			<span class="wd-icon-w" ></span>
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span class="wd-icon-e" ></span>
+		</nav>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+<kbd>/div</kbd>
+
+<kbd>nav</kbd>
+	<kbd>span class=<q>wd-icon-w</q> </kbd><kbd>/span</kbd>
+	<kbd>span</kbd>1<kbd>/span</kbd>
+	<kbd>span</kbd>2<kbd>/span</kbd>
+	<kbd>span</kbd>3<kbd>/span</kbd>
+	<kbd>span</kbd>4<kbd>/span</kbd>
+	<kbd>span class=<q>wd-icon-e</q> </kbd><kbd>/span</kbd>
+<kbd>/nav</kbd></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</main>
+
+</body>
+</html>
