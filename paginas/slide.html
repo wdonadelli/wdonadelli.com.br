@@ -71,10 +71,10 @@
 		<p>Para isso, cada elemento filho será contemplado com um identificador (<code>id</code>) e será necessário contruir um navegador para manipular o slide a ser exibido. Esse navegador possibilitará escolher o elemento específico e também o anterior ou posterior:</p>
 
 		<div class="wd-b wd-size-xlarge wd-align-center">
-			<div style="height: 150px;" id="slide1" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" id="slide2" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" id="slide3" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" id="slide4" class="wd-bg-black" >Slide 4</div>
+			<div style="height: 150px;" id="slide0-1" class="wd-bg-blue"  >Slide 1</div>
+			<div style="height: 150px;" id="slide0-2" class="wd-bg-red"   >Slide 2</div>
+			<div style="height: 150px;" id="slide0-3" class="wd-bg-green" >Slide 3</div>
+			<div style="height: 150px;" id="slide0-4" class="wd-bg-black" >Slide 4</div>
 		</div>
 
 		<nav>
@@ -88,10 +88,10 @@
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
 <kbd>/div</kbd>
 
 <kbd>nav</kbd>
@@ -103,7 +103,133 @@
 	<kbd>span class=<q>wd-icon-e</q> </kbd><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
+	<p>Para estabelecer a interação com o <q>carrossel</q>, será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
 
+	<p>Para acessar os <i>slides</i> específicos, será utilizada a ação <q>tab</q>, indicando o identificador do elemento (filho), e para acessar o elemento posterior e anterior serão utilizadas as ações <q>next</q> e <q>prev</q>, respectivamente. Para estas últimas ações descritas, o elemento pai também receberá um identificador, cujo seletor será referenciado na interação:</p>
+
+		<div class="wd-b wd-size-xlarge wd-align-center" id="slides1">
+			<div style="height: 150px;" id="slide1-1" class="wd-bg-blue"  >Slide 1</div>
+			<div style="height: 150px;" id="slide1-2" class="wd-bg-red"   >Slide 2</div>
+			<div style="height: 150px;" id="slide1-3" class="wd-bg-green" >Slide 3</div>
+			<div style="height: 150px;" id="slide1-4" class="wd-bg-black" >Slide 4</div>
+		</div>
+
+		<nav>
+			<span class="wd-icon-w" data-wd-action="prev{#slides1}"></span>
+			<span data-wd-action="tab{#slide1-1}">1</span>
+			<span data-wd-action="tab{#slide1-2}">2</span>
+			<span data-wd-action="tab{#slide1-3}">3</span>
+			<span data-wd-action="tab{#slide1-4}">4</span>
+			<span class="wd-icon-e" data-wd-action="next{#slides1}"></span>
+		</nav>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q> id=<q>slides1</q></kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+<kbd>/div</kbd>
+
+<kbd>nav</kbd>
+	<kbd>span class=<q>wd-icon-w</q> <em>data-wd-action</em>=<q>prev{#slides1}</q></kbd><kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-1}</q></kbd>1<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-2}</q></kbd>2<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-3}</q></kbd>3<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-4}</q></kbd>4<kbd>/span</kbd>
+	<kbd>span class=<q>wd-icon-e</q> <em>data-wd-action</em>=<q>next{#slides1}</q></kbd><kbd>/span</kbd>
+<kbd>/nav</kbd></pre>
+
+		<p>Note que todos os elementos são exibidos ao renderizar a página. Caso seja necessário que apenas um apareça, basta adionar o atributo <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> ao botão que seleciona o elemento escolhido. Como exemplo, será definido como elemento inicial o <q>slide2</q>:</p>
+
+		<div class="wd-b wd-size-xlarge wd-align-center" id="slides2">
+			<div style="height: 150px;" id="slide2-1" class="wd-bg-blue"  >Slide 1</div>
+			<div style="height: 150px;" id="slide2-2" class="wd-bg-red"   >Slide 2</div>
+			<div style="height: 150px;" id="slide2-3" class="wd-bg-green" >Slide 3</div>
+			<div style="height: 150px;" id="slide2-4" class="wd-bg-black" >Slide 4</div>
+		</div>
+
+		<nav>
+			<span class="wd-icon-w" data-wd-action="prev{#slides2}"></span>
+			<span data-wd-action="tab{#slide2-1}">1</span>
+			<span data-wd-action="tab{#slide2-2}" data-wd-click="" >2</span>
+			<span data-wd-action="tab{#slide2-3}">3</span>
+			<span data-wd-action="tab{#slide2-4}">4</span>
+			<span class="wd-icon-e" data-wd-action="next{#slides2}"></span>
+		</nav>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q> id=<q>slides2</q></kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+<kbd>/div</kbd>
+
+<kbd>nav</kbd>
+	<kbd>span class=<q>wd-icon-w</q> <em>data-wd-action</em>=<q>prev{#slides2}</q></kbd><kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-1}</q></kbd>1<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-2}</q> <em>data-wd-click</em>=<q></q> </kbd>2<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-3}</q></kbd>3<kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-4}</q></kbd>4<kbd>/span</kbd>
+	<kbd>span class=<q>wd-icon-e</q> <em>data-wd-action</em>=<q>next{#slides2}</q></kbd><kbd>/span</kbd>
+<kbd>/nav</kbd></pre>
+
+		<h3>Exibição Automática</h3>
+
+		<p>Vamos partir do mesmo exemplo anterior, modificando-o levemente.</p>
+		
+		<p>No lugar de construir um navegador para manipular a exibição dos elementos, apenas as ações <q>next</q> e <q>prev</q> permanecerão, mas essas serão posicionadas dentro do container de <i>slides</i>, uma à direita e outra à esquerda, respectivamente.</p>
+		
+		<p>Para isso, um container externo deverá ser criado com posicionamento alterado para algo diferente do padrão (<i>static</i>), será escolhido o <i>relative</i>. Os botões com as ações serão inseridos dentro deste novo elemento pai através do objeto <code>span</code> e receberão os atributos de classe <code>wd-place-...</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-CSS-Utilities-Style#place" class="wd-icon-link" title="Sobre o atributo"></a></sup>. O container com os <i>slides</i> também será adcionado ao novo elemento de nível superior. Os identificadores dos <i>slides</i> não serão mais necessários. Após as modificações necessárias, ter-se-á o seguinte:</p>
+
+		<div style="position: relative;" class="wd-b wd-size-xlarge wd-align-center">
+			<div id="slides3">
+				<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
+				<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
+				<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
+				<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
+			</div>
+			<span data-wd-action="next{#slides3}" class="wd-place-e wd-padding wd-icon-right"></span>
+			<span data-wd-action="prev{#slides3}" class="wd-place-w wd-padding wd-icon-left"></span>
+		</div>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div style=<q>position: relative;</q> class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
+	<kbd>div id=<q>slides3</q></kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+	<kbd>/div</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>next{#slides3}</q> class=<q>wd-place-e wd-padding wd-icon-right</q></kbd><kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>prev{#slides3}</q> class=<q>wd-place-w wd-padding wd-icon-left</q></kbd><kbd>/span</kbd>
+<kbd>/div</kbd></pre>
+
+	<p>Para implementar o andamento automático, será tuilizado o atributo <code>data-wd-slide</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Slide-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, cujo valor indica, em milisegundos, o tempo de transição entre os elementos:</p>
+
+		<div style="position: relative;" class="wd-b wd-size-xlarge wd-align-center">
+			<div id="slides3" data-wd-slide="4500" >
+				<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
+				<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
+				<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
+				<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
+			</div>
+			<span data-wd-action="next{#slides3}" class="wd-place-e wd-padding wd-icon-right"></span>
+			<span data-wd-action="prev{#slides3}" class="wd-place-w wd-padding wd-icon-left"></span>
+		</div>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>div style=<q>position: relative;</q> class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
+	<kbd>div id=<q>slides3</q> <em>data-wd-slide</em>=<q>4500</q> </kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
+		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+	<kbd>/div</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>next{#slides3}</q> class=<q>wd-place-e wd-padding wd-icon-right</q></kbd><kbd>/span</kbd>
+	<kbd>span <em>data-wd-action</em>=<q>prev{#slides3}</q> class=<q>wd-place-w wd-padding wd-icon-left</q></kbd><kbd>/span</kbd>
+<kbd>/div</kbd></pre>
 
 
 
