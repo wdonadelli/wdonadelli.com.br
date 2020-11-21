@@ -2,15 +2,15 @@
 <html class="wd">
 
 	<head>
-		<title>WDonadelli - Carrossel</title>
+		<title>WDonadelli - Lista Interativa</title>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<meta name="keywords" content="HTML, CSS, javaScript, C, programação, slide, carrossel" />
+		<meta name="keywords" content="HTML, CSS, javaScript, C, programação, lista, interativa" />
 		<meta name="author" content="Willian Donadelli"/>
-		<meta name="description" content="Como contruir um carrossel de elementos com a biblioteca wd" />
+		<meta name="description" content="Como contruir uma lista interativa com a biblioteca wd" />
 		<meta name="rating" content="general" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
+		<script src="../../wd/v3/wd/wd.js"></script>
 		<link  href="../../wd/v3/wd/wd.css" rel="stylesheet" />
 	</head>
 
@@ -18,94 +18,242 @@
 
 	<main class="wd-report wd-border-box wd-padding-length">
 
-		<h1 class="wd-case-caps">Carrossel de Elementos</h1>
+		<h1 class="wd-case-caps">Lista Interativa</h1>
 		
-		<h2>Construindo um carrossel de elementos com a biblioteca wd</h2>
+		<h2>Construindo uma lista interativa com a biblioteca wd</h2>
 
 		<p class="wd-align-right">20 de novembro de 2020</p>
 
 		<h3>Apresentação</h3>
 
-		<p>O propósito deste artigo é descrever a construção de um <q>carrossel</q> de elementos cuja finalidade é a de exibir um elemento filho de cada vez na tela, seja de forma manual ou automática.</p>
+		<p>O propósito deste artigo é descrever a construção de uma lista interativa utilizando as ferramentas de <i>script</i> e de atributos disponibilizadas pela biblioteca wd.</p>
 
 		<p>O manual da biblioteca wd pode ser encontrado no link <a href="https://github.com/wdonadelli/wd/wiki" class="wd-attr-href"></a>.</p>
 
 		<h3>Elementos Básicos</h3>
 
-		<p>Para demonstrar a construção do carrossel, será estabelecido um container pai contendo quatro elementos filhos, conforme abaixo apresentado:</p>
-		
-		<div>
-			<div>Slide 1</div>
-			<div>Slide 2</div>
-			<div>Slide 3</div>
-			<div>Slide 4</div>
-		</div>
-		
+		<p>Para demonstrar a construção da lista interativa, será utilizado como exemplo a seleção de Unidades Federativas - UF e respectivos Municípios.</p>
+
+		<p>Para evitar longas listas, as UF ficarão restritas à região sul do Brasil e apenas algumas cidades estarão disponíveis.</p>
+
+		<p>As informações ficarão armazenadas em arquivos JSON conforme abaixo:</p>
+
+		<h4>Unidades Federativas - UF</h4>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/UF.json}" ></pre>
+
+		<h4>Paraná - PR</h4>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/PR.json}" ></pre>
+
+		<div class="wd-align-right"><cite>json/PR.json</cite></div>
+
+		<h4>Santa Catarina - SC</h4>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/SC.json}" ></pre>
+
+		<div class="wd-align-right"><cite>json/SC.json</cite></div>
+
+		<h4>Rio Grande do Sul - RS</h4>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/RS.json}" ></pre>
+
+		<div class="wd-align-right"><cite>json/RS.json</cite></div>
+
+		<h3>Utilizando o Atributo</h3>
+
+		<p>Para construção da lista interativa será utilizado o atributo <code>data-wd-repeat</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Repeat-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a repetição dos elementos filhos, definidos como modelo, substituindo os valores das palavras chaves (<i>{{chave}}</i>) pelos valores dos atributos definidos no arquivo JSON.</p>
+
+		<p>Nesta demostração será construído um navegador para definir a UF a ser exibida e uma lista simples para exibir os respectivos municípios. A lista precisará ter um identificador (<code>id</code>) para ser possível referenciá-la:</p>
+
+		<h5>UF</h5>		
+		<nav></nav>
+
+		<h5>Municípios</h5>
+		<ul id="municipios" ></ul>
+
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div</kbd>
-	<kbd>div</kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div</kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div</kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div</kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd></pre>
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
+<kbd>nav</kbd><kbd>/nav</kbd>
 
-		<p>Para melhorar a visualização, cada elemento filho receberá uma altura de <var>150px</var>, fonte com tamanho maior, negrito e centralizada além de uma coloração individualizada:</p>
+<kbd>h5</kbd>Municípios<kbd>/h5</kbd>
+<kbd>ul id=<q>municipios</q> </kbd><kbd>/ul</kbd></pre>
 
-		<div class="wd-b wd-size-xlarge wd-align-center">
-			<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
-		</div>
-		
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd></pre>
+		<p>Para carregar as listas, será necessário definir um elemento filho modelo, que servirá como molde para a construção de sua estrutura. Para fazer referências utilizando o atributo <code>data-wd-repeat</code>, usa-se chaves duplas com o nome do atributo do arquivo JSON. Por exemplo, caso queira fazer referência ao atributo <q>nome</q> do arquivo JSON, deveria referenciá-lo na forma <code>{{nome}}</code>.</p>
 
-		<h3>Exibição Manual</h3>
+		<p>Os modelos poderiam ser construídos da seguinte forma:</p>
 
-		<p>Nesta fase serão contruídos os elementos de interação para exibir cada <i>slide</i> de forma individual.</p>
-		
-		<p>Para isso, cada elemento filho será contemplado com um identificador (<code>id</code>) e será necessário construir um navegador para manipular o carrossel. Esse navegador possibilitará escolher o elemento a ser exibido além dos elementos anterior ou posterior:</p>
-
-		<div class="wd-b wd-size-xlarge wd-align-center">
-			<div style="height: 150px;" id="slide0-1" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" id="slide0-2" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" id="slide0-3" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" id="slide0-4" class="wd-bg-black" >Slide 4</div>
-		</div>
-
+		<h5>UF</h5>
 		<nav>
-			<span class="wd-icon-w" ></span>
-			<span>1</span>
-			<span>2</span>
-			<span>3</span>
-			<span>4</span>
-			<span class="wd-icon-e" ></span>
+			<span>{{nome}}-{{sigla}}</span>
 		</nav>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide0-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd>
+		<h5>Municípios</h5>
+		<ul id="municipios" >
+			<li>{{nome}}</li>
+		</ul>
 
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
 <kbd>nav</kbd>
-	<kbd>span class=<q>wd-icon-w</q> </kbd><kbd>/span</kbd>
-	<kbd>span</kbd>1<kbd>/span</kbd>
-	<kbd>span</kbd>2<kbd>/span</kbd>
-	<kbd>span</kbd>3<kbd>/span</kbd>
-	<kbd>span</kbd>4<kbd>/span</kbd>
-	<kbd>span class=<q>wd-icon-e</q> </kbd><kbd>/span</kbd>
+	<kbd>span</kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
+<kbd>/nav</kbd>
+
+<kbd>h5</kbd>Municípios<kbd>/h5</kbd>
+<kbd>ul id=<q>municipios</q> </kbd>
+	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
+<kbd>/ul</kbd></pre>
+
+		<p>Inicialmente será construído o navegador de UF a partir do uso do atributo <code>data-wd-repeat</code>:</p>
+
+		<h5>UF</h5>
+		<nav data-wd-repeat="get{json/UF.json}">
+			<span>{{nome}}-{{sigla}}</span>
+		</nav>
+
+		<h5>Municípios</h5>
+		<ul id="municipios1" >
+			<li>{{nome}}</li>
+		</ul>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+	<kbd>span</kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
+<kbd>/nav</kbd>
+
+<kbd>h5</kbd>Municípios<kbd>/h5</kbd>
+<kbd>ul id=<q>municipios1</q> </kbd>
+	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
+<kbd>/ul</kbd></pre>
+
+		<p>O próximo passo é definir a ação de carregar a lista das cidades ao clicar sobre uma UF no navegador. Para isso será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <q>click</q>.</p> 
+
+		<p>Adicionando o citado atributo ao elemento modelo do navegador:</p>
+
+		<h5>UF</h5>
+		<nav data-wd-repeat="get{json/UF.json}">
+			<span data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios2}" >{{nome}}-{{sigla}}</span>
+		</nav>
+
+		<h5>Municípios</h5>
+		<ul id="municipios2" data-wd-repeat="get{\\\/}">
+			<li>{{nome}}</li>
+		</ul>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios2}</q> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
+<kbd>/nav</kbd>
+
+<kbd>h5</kbd>Municípios<kbd>/h5</kbd>
+<kbd>ul id=<q>municipios2</q> </kbd>
+	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
+<kbd>/ul</kbd></pre>
+
+		<p>Observe que quando a página é carregada, antes de uma UF ser clicada no navegador, a lista fica exibindo o modelo (<cite>{{nome}}</cite>), o que é um pouco deselegante. Uma maneira de contornar tal situação seria utilizando o atributo <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> sobre uma das opções do navegador. Esse atributo promove um clique automático após o carregamento da página.</p>
+
+		<p>Mas para utilizá-lo aqui, deveríamos colocar a informação de qual seria a escolha padrão no arquivo JSON e referenciar o respetivo atributo no modelo. Por exemplo, poderíamos acrescentar o atributo <q>inicial</q> no arquivo JSON e deixá-lo com valor <q>data-wd-click=<q></q></q> para a UF inicial e em branco para as demais UF:</p>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<cite>-- Arquivo JSON --</cite>
+
+[
+	{
+		<q>sigla</q>: <q>PR</q>,
+		<q>nome</q>: <q>Paraná</q>,
+		<q>municipios</q>: <q>json/PR.json</q>",
+		<q>inicial</q>: <q>data-wd-click=<q></q></q>
+	},
+	{
+		<q>sigla</q>: <q>SC</q>,
+		<q>nome</q>: <q>Santa Catarina</q>,
+		<q>municipios</q>: <q>json/SC.json</q>,
+		<q>inicial</q>: <q></q>
+	},
+	...
+]
+
+<cite>-- HTML --</cite>
+
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios2}</q> <em>{{inicial}}</em> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
-	<p>Para estabelecer a interação com o carrossel, será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
+		<p>Uma outra solução seria definir o atributo <code>data-wd-repeat</code> com a informação de um arquivo inexiste:</p>
+
+		<h5>UF</h5>
+		<nav data-wd-repeat="get{json/UF.json}">
+			<span data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios3}">{{nome}}-{{sigla}}</span>
+		</nav>
+
+		<h5>Municípios</h5>
+		<ul id="municipios3" data-wd-repeat="get{X}" >
+			<li>{{nome}}</li>
+		</ul>
+
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>h5</kbd>UF<kbd>/h5</kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios3}</q></kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
+<kbd>/nav</kbd>
+
+<kbd>h5</kbd>Municípios<kbd>/h5</kbd>
+<kbd>ul id=<q>municipios3</q> <em>data-wd-repeat</em>=<q>get{X}</q> </kbd>
+	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
+<kbd>/ul</kbd></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	Para estabelecer a interação com o carrossel, será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
 
 	<p>Para acessar os <i>slides</i> específicos, será utilizada a ação <code>tab</code>, indicando o identificador do elemento (filho), e para acessar os elementos posterior ou anterior serão utilizadas as ações <code>next</code> e <code>prev</code>, respectivamente. Para essas últimas ações, o elemento pai também deverá receber um identificador, cujo seletor será referenciado na interação:</p>
 

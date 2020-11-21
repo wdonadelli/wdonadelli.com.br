@@ -6,10 +6,10 @@
 		"frase2": "...um carrossel de elementos"
 	},
 	{
-		"href": "paginas/dialogo.html",
+		"href": "paginas/lista-interativa.html",
 		"imagem": "imagens/flor.png",
 		"frase1": "Como construir...",
-		"frase2": "...uma caixa de diálogo"
+		"frase2": "...uma lista interativa"
 	},
 	{
 		"href": "paginas/menus.html",
