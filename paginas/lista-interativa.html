@@ -22,7 +22,7 @@
 		
 		<h2>Construindo uma lista interativa com a biblioteca wd</h2>
 
-		<p class="wd-align-right">20 de novembro de 2020</p>
+		<p class="wd-align-right">22 de novembro de 2020</p>
 
 		<h3>Apresentação</h3>
 
@@ -137,7 +137,7 @@
 		</nav>
 
 		<h5>Municípios</h5>
-		<ul id="municipios2" data-wd-repeat="get{\\\/}">
+		<ul id="municipios2" data-wd-repeat="get{null}">
 			<li>{{nome}}</li>
 		</ul>
 
@@ -190,7 +190,7 @@
 		</nav>
 
 		<h5>Municípios</h5>
-		<ul id="municipios3" data-wd-repeat="get{X}" >
+		<ul id="municipios3" data-wd-repeat="get{null}" >
 			<li>{{nome}}</li>
 		</ul>
 
@@ -201,218 +201,248 @@
 <kbd>/nav</kbd>
 
 <kbd>h5</kbd>Municípios<kbd>/h5</kbd>
-<kbd>ul id=<q>municipios3</q> <em>data-wd-repeat</em>=<q>get{X}</q> </kbd>
+<kbd>ul id=<q>municipios3</q> <em>data-wd-repeat</em>=<q>get{null}</q> </kbd>
 	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
 <kbd>/ul</kbd></pre>
 
+		<h3>Utilizando um Script</h3>
 
+		<p>A situação apresentada até aqui geralmente é encontrada em formulários, através da utilização de combos (<code>select</code>). Modificando o exemplo anterior para se adequar a um formulário, tem-se o seguinte:</p>
 
+		<form class="wd-block">
+			<label>UF</label>
+			<select data-wd-repeat="get{json/UF.json}" >
+				<option data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios4}">{{nome}}-{{sigla}}</option>
+			</select>
 
+			<label>Municípios</label>
+			<select id="municipios4" data-wd-repeat="get{null}" >
+				<option>{{nome}}</option>
+			</select>
+		</form>
 
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<kbd>form class=<q>wd-block</q></kbd>
+	<kbd>label</kbd>UF<kbd>/label</kbd>
+	<kbd>select <em>data-wd-repeat</em>=<q>get{json/UF.json}</q> </kbd>
+		<kbd>option <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios4}</q></kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/option</kbd>
+	<kbd>/select</kbd>
 
+	<kbd>label</kbd>Municípios<kbd>/label</kbd>
+	<kbd>select id=<q>municipios4</q> <em>data-wd-repeat</em>=<q>get{null}</q> </kbd>
+		<kbd>option</kbd><em>{{nome}}</em><kbd>/option</kbd>
+	<kbd>/select</kbd>
+<kbd>/form</kbd></pre>
 
+		<p>O formulário acima até que funciona, mas somente se os elementos <code>option</code> receberem um clique, pois é assim que o atributo <code>data-wd-data</code> funciona. Aa lista das cidades não será carregada se, por exemplo, mudarmos os valores de UF com o teclado.</p>
 
+		<p>Para resolver isso, será utilizado um <i>script</i> que promoverá o carregamento dos municípios. Uma possível solução seria:</p>
 
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
+<em>function</em> municipios() {
+	<em>var</em> arquivo = wd$(<q>#uf5</q>).item().value;
+	wd$(<q>#municipios5</q>).data({
+		wdRepeat: <q>get{</q>+arquivo+<q>}</q>
+	});
+	<em>return</em>;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+wd$(<q>#uf5</q>).handler({
+	change: municipios
+});
+</pre>
 	
-	
-	Para estabelecer a interação com o carrossel, será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
+	<p>Aplicando ao formulário:</p>
 
-	<p>Para acessar os <i>slides</i> específicos, será utilizada a ação <code>tab</code>, indicando o identificador do elemento (filho), e para acessar os elementos posterior ou anterior serão utilizadas as ações <code>next</code> e <code>prev</code>, respectivamente. Para essas últimas ações, o elemento pai também deverá receber um identificador, cujo seletor será referenciado na interação:</p>
+		<form class="wd-block">
+			<label>UF</label>
+			<select id="uf5" data-wd-repeat="get{json/UF.json}" >
+				<option value="{{municipios}}" >{{nome}}-{{sigla}}</option>
+			</select>
 
-		<div class="wd-b wd-size-xlarge wd-align-center" id="slides1">
-			<div style="height: 150px;" id="slide1-1" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" id="slide1-2" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" id="slide1-3" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" id="slide1-4" class="wd-bg-black" >Slide 4</div>
-		</div>
+			<label>Municípios</label>
+			<select id="municipios5" data-wd-repeat="get{json/PR.json}" >
+				<option>{{nome}}</option>
+			</select>
+		</form>
 
-		<nav>
-			<span class="wd-icon-w" data-wd-action="prev{#slides1}"></span>
-			<span data-wd-action="tab{#slide1-1}">1</span>
-			<span data-wd-action="tab{#slide1-2}">2</span>
-			<span data-wd-action="tab{#slide1-3}">3</span>
-			<span data-wd-action="tab{#slide1-4}">4</span>
-			<span class="wd-icon-e" data-wd-action="next{#slides1}"></span>
-		</nav>
+		<script>
+function municipios() {
+	var arquivo = wd$("#uf5").item().value;
+	wd$("#municipios5").data({
+		wdRepeat: "get{"+arquivo+"}"
+	});
+	return;
+}
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q> id=<q>slides1</q></kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide1-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd>
-
-<kbd>nav</kbd>
-	<kbd>span class=<q>wd-icon-w</q> <em>data-wd-action</em>=<q>prev{#slides1}</q></kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-1}</q></kbd>1<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-2}</q></kbd>2<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-3}</q></kbd>3<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide1-4}</q></kbd>4<kbd>/span</kbd>
-	<kbd>span class=<q>wd-icon-e</q> <em>data-wd-action</em>=<q>next{#slides1}</q></kbd><kbd>/span</kbd>
-<kbd>/nav</kbd></pre>
-
-		<p>Note que todos os elementos são exibidos ao renderizar a página. Caso seja necessário que apenas um apareça, basta adionar o atributo <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> ao botão que seleciona o elemento escolhido. Esse atributo promove um clique automático após o carregamento da página. Como exemplo, será definido como elemento inicial o <q>slide2</q>:</p>
-
-		<div class="wd-b wd-size-xlarge wd-align-center" id="slides2">
-			<div style="height: 150px;" id="slide2-1" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" id="slide2-2" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" id="slide2-3" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" id="slide2-4" class="wd-bg-black" >Slide 4</div>
-		</div>
-
-		<nav>
-			<span class="wd-icon-w" data-wd-action="prev{#slides2}"></span>
-			<span data-wd-action="tab{#slide2-1}">1</span>
-			<span data-wd-action="tab{#slide2-2}" data-wd-click="" >2</span>
-			<span data-wd-action="tab{#slide2-3}">3</span>
-			<span data-wd-action="tab{#slide2-4}">4</span>
-			<span class="wd-icon-e" data-wd-action="next{#slides2}"></span>
-		</nav>
+wd$("#uf5").handler({
+	change: municipios
+});
+		</script>
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q> id=<q>slides2</q></kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-1</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-2</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-3</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> id=<q>slide2-4</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd>
+<kbd>form class=<q>wd-block</q></kbd>
+	<kbd>label</kbd>UF<kbd>/label</kbd>
+	<kbd>select id=<q>uf5</q> <em>data-wd-repeat</em>=<q>get{json/UF.json}</q> </kbd>
+		<kbd>option value=<q>{{municipios}}</q> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/option</kbd>
+	<kbd>/select</kbd>
 
-<kbd>nav</kbd>
-	<kbd>span class=<q>wd-icon-w</q> <em>data-wd-action</em>=<q>prev{#slides2}</q></kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-1}</q></kbd>1<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-2}</q> <em>data-wd-click</em>=<q></q> </kbd>2<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-3}</q></kbd>3<kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>tab{#slide2-4}</q></kbd>4<kbd>/span</kbd>
-	<kbd>span class=<q>wd-icon-e</q> <em>data-wd-action</em>=<q>next{#slides2}</q></kbd><kbd>/span</kbd>
-<kbd>/nav</kbd></pre>
+	<kbd>label</kbd>Municípios<kbd>/label</kbd>
+	<kbd>select id=<q>municipios5</q> <em>data-wd-repeat</em>=<q>get{json/PR.json}</q> </kbd>
+		<kbd>option</kbd><em>{{nome}}</em><kbd>/option</kbd>
+	<kbd>/select</kbd>
+<kbd>/form</kbd>
 
-		<h3>Exibição Automática</h3>
+<kbd>script</kbd>
+<em>function</em> municipios() {
+	<em>var</em> arquivo = wd$(<q>#uf5</q>).item().value;
+	wd$(<q>#municipios5</q>).data({
+		wdRepeat: <q>get{</q>+arquivo+<q>}</q>
+	});
+	<em>return</em>;
+}
 
-		<p>A partir da construção anterior, com pequenas modificações, será implementado a transição automática dos elementos filhos.</p>
-		
-		<p>No lugar de construir um navegador para manipular a exibição dos elementos, apenas as ações <code>next</code> e <code>prev</code> permanecerão, entretanto, posicionadas dentro do container de <i>slides</i>, uma à direita e outra à esquerda, respectivamente.</p>
-		
-		<p>Para isso, um container externo deverá ser criado com posicionamento alterado para algo diferente do padrão (<i>static</i>), será escolhido o <i>relative</i>. Os botões com as ações serão inseridos dentro deste novo elemento pai através do objeto <code>span</code> e receberão os atributos de classe <code>wd-place-...</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-CSS-Utilities-Style#place" class="wd-icon-link" title="Sobre o atributo"></a></sup>. O container com os <i>slides</i> também será adcionado ao novo elemento de nível superior. Os identificadores dos <i>slides</i> não serão mais necessários. Após as modificações necessárias, a visualização ficará da seguinte forma:</p>
+wd$(<q>#uf5</q>).handler({
+	change: municipios
+});
+<kbd>/script</kbd></pre>
 
-		<div style="position: relative;" class="wd-b wd-size-xlarge wd-align-center">
-			<div id="slides3">
-				<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
-				<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
-				<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
-				<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
+		<h3>Forma Alternativa</h3>
+
+		<p>Em algumas situações não há jeito certo, existe aquele que não funciona e aquele que funciona, com mais ou menos erros. Portanto, métodos alternativos podem ser desenvolvidos sem precisar ficar preso a um único modelo.</p>
+
+		<p>Para elaborar um formulário alternativo àquele acima apresentado, será utilizado o atributo <code>data-wd-set</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Set-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que define determinados atributos dos elementos, e o atributo <code>data-wd-filter</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Filter-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que filtra os elementos de acordo com o texto pesquisado. O primeiro reage ao evento <q>click</q> e o segundo ao evento <q>input</q>.</p>
+
+		<p>Segue abaixo o modelo alternativo para selecionar UF e Município sem utilizar nenhum <i>script</i> adicional. O código está longo devido a forma como foram distribuídos os atributos dos elementos HTML, pensados na organização e visualização. Clique no campo abaixo:</p>
+
+		<form class="wd-block">
+
+			<input
+				type="text"
+				id="campoUF"
+				value=""
+				readonly=""
+				placeholder="Unidade Federativa"
+				data-wd-set="class{}${#listaUF}"
+			 />
+
+			<div
+				id="listaUF"
+				class="wd-overlook"
+				data-wd-repeat="get{json/UF.json}"
+			>
+				<div 
+					class="wd-padding wd-border-bottom wd-upon-enter wd-bg-black"
+					data-wd-data="wdRepeat{get{ {{municipios}} }}${#listaCidades}"
+					data-wd-set="class{wd-overlook}${#listaUF}&value{{{sigla}}}${#campoUF}&value{}${#campoCidade}&class{wd-overlook}${#cidades}"
+				>{{nome}}-{{sigla}}</div>
 			</div>
-			<span data-wd-action="next{#slides3}" class="wd-place-e wd-padding wd-icon-right"></span>
-			<span data-wd-action="prev{#slides3}" class="wd-place-w wd-padding wd-icon-left"></span>
-		</div>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div style=<q>position: relative;</q> class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
-	<kbd>div id=<q>slides3</q></kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-	<kbd>/div</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>next{#slides3}</q> class=<q>wd-place-e wd-padding wd-icon-right</q></kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>prev{#slides3}</q> class=<q>wd-place-w wd-padding wd-icon-left</q></kbd><kbd>/span</kbd>
-<kbd>/div</kbd></pre>
+			<input
+				type="text"
+				id="campoCidade"
+				value=""
+				readonly=""
+				placeholder="Município"
+				data-wd-set="class{}${#cidades}"
+			/>
 
-	<p>Para implementar o andamento automático, será utilizado o atributo <code>data-wd-slide</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Slide-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo promove a alternância progressiva dos elementos filhos num certo intervalo de tempo representado, em milisegundos, pelo valor do atributo:</p>
+			<div
+				id="cidades"
+				class="wd-overlook"
+			>
 
-		<div style="position: relative;" class="wd-b wd-size-xlarge wd-align-center">
-			<div id="slides3" data-wd-slide="4500" >
-				<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
-				<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
-				<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
-				<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
+				<div class="wd-block wd-padding wd-bg-black">
+
+					<input
+						type="search"
+						id="pesquisa"
+						placeholder="Pesquisar..."
+						data-wd-filter="show{}${#listaCidades}"
+					/>
+
+				</div>
+
+
+				<div
+					id="listaCidades"
+					data-wd-repeat="get{null}"
+				>
+
+					<div
+						class="wd-padding wd-border-bottom wd-upon-enter wd-bg-black"
+						data-wd-set="class{wd-overlook}${#cidades}&value{{{nome}}}${#campoCidade}"
+					>{{nome}}</div>
+					
+				</div>
 			</div>
-			<span data-wd-action="next{#slides3}" class="wd-place-e wd-padding wd-icon-right"></span>
-			<span data-wd-action="prev{#slides3}" class="wd-place-w wd-padding wd-icon-left"></span>
-		</div>
+
+		</form>
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div style=<q>position: relative;</q> class=<q>wd-b wd-size-xlarge wd-align-center</q></kbd>
-	<kbd>div id=<q>slides3</q> <em>data-wd-slide</em>=<q>4500</q> </kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-		<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
+<kbd>form class=<q>wd-block</q></kbd>
+
+	<kbd>input
+		type=<q>text</q>
+		id=<q>campoUF</q>
+		value=<q></q>
+		readonly=<q></q>
+		placeholder=<q>Unidade Federativa</q>
+		<em>data-wd-set</em>=<q>class{}${#listaUF}</q>
+	 /</kbd>
+
+	<kbd>div
+		id=<q>listaUF</q>
+		class=<q>wd-overlook</q>
+		<em>data-wd-repeat</em>=<q>get{json/UF.json}</q>
+	</kbd>
+		<kbd>div 
+			class=<q>wd-padding wd-border-bottom wd-upon-enter wd-bg-black</q>
+			<em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#listaCidades}</q>
+			<em>data-wd-set</em>=<q>class{wd-overlook}${#listaUF}&value{{{sigla}}}${#campoUF}&value{}${#campoCidade}&class{wd-overlook}${#cidades}</q>
+		</kbd>{{nome}}-{{sigla}}<kbd>/div</kbd>
 	<kbd>/div</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>next{#slides3}</q> class=<q>wd-place-e wd-padding wd-icon-right</q></kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-action</em>=<q>prev{#slides3}</q> class=<q>wd-place-w wd-padding wd-icon-left</q></kbd><kbd>/span</kbd>
-<kbd>/div</kbd></pre>
 
-		<p>Para concluir o presente tópico, será demonstrado como implementar ações para parar e acelerar a transição dos elementos.</p>
+	<kbd>input
+		type=<q>text</q>
+		id=<q>campoCidade</q>
+		value=<q></q>
+		readonly=<q></q>
+		placeholder=<q>Município</q>
+		<em>data-wd-set</em>=<q>class{}${#cidades}</q>
+	/</kbd>
 
-		<p>Para implementar tais ações, será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <q>click</q>.</p>
+	<kbd>div
+		id=<q>cidades</q>
+		class=<q>wd-overlook</q>
+	</kbd>
 
-		<p>Após algumas modificações e a construção de um navegador para manipular as ações, a visualização ficará da seguinte forma:</p>
+		<kbd>div class=<q>wd-block wd-padding wd-bg-black<q></kbd>
 
-		<div class="wd-b wd-size-xlarge wd-align-center" id="slides4" data-wd-slide="4500" >
-			<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
-			<div style="height: 150px;" class="wd-bg-red"   >Slide 2</div>
-			<div style="height: 150px;" class="wd-bg-green" >Slide 3</div>
-			<div style="height: 150px;" class="wd-bg-black" >Slide 4</div>
-		</div>
+			<kbd>input
+				type=<q>search</q>
+				id=<q>pesquisa</q>
+				placeholder=<q>Pesquisar...</q>
+				<em>data-wd-filter</em>=<q>show{}${#listaCidades}</q>
+			/</kbd>
 
-		<nav>
-			<span data-wd-data="wdSlide{null}${#slides4}" class="wd-icon-stop"    ></span>
-			<span data-wd-data="wdSlide{4500}${#slides4}" class="wd-icon-play"    ></span>
-			<span data-wd-data="wdSlide{1000}${#slides4}" class="wd-icon-forward" ></span>
-		</nav>
+		<kbd>/div</kbd>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
-<kbd>div class=<q>wd-b wd-size-xlarge wd-align-center</q> id=<q>slides4</q> <em>data-wd-slide</em>=<q>4500</q> </kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-blue</q>  </kbd>Slide 1<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-red</q>   </kbd>Slide 2<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-green</q> </kbd>Slide 3<kbd>/div</kbd>
-	<kbd>div style=<q>height: 150px;</q> class=<q>wd-bg-black</q> </kbd>Slide 4<kbd>/div</kbd>
-<kbd>/div</kbd>
 
-<kbd>nav</kbd>
-	<kbd>span <em>data-wd-data</em>=<q>wdSlide{null}${#slides4}</q> class=<q>wd-icon-stop</q>    </kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-data</em>=<q>wdSlide{4500}${#slides4}</q> class=<q>wd-icon-play</q>    </kbd><kbd>/span</kbd>
-	<kbd>span <em>data-wd-data</em>=<q>wdSlide{1000}${#slides4}</q> class=<q>wd-icon-forward</q> </kbd><kbd>/span</kbd>
-<kbd>/nav</kbd></pre>
+		<kbd>div
+			id=<q>listaCidades</q>
+			<em>data-wd-repeat</em>=<q>get{null}</q>
+		</kbd>
+
+			<kbd>div
+				class=<q>wd-padding wd-border-bottom wd-upon-enter wd-bg-black</q>
+				<em>data-wd-set</em>=<q>class{wd-overlook}${#cidades}&value{{{nome}}}${#campoCidade}</q>
+			</kbd>{{nome}}<kbd>/div</kbd>
+			
+		<kbd>/div</kbd>
+	<kbd>/div</kbd>
+
+<kbd>/form</kbd></pre>
 
 		<p>Com esse último exemplo, encera-se o presente artigo.</p>
 
