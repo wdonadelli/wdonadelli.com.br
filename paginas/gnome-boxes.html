@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html class="wd">
+
+	<head>
+		<title>WDonadelli - gnome-boxes</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="gnome, boxes, virtualização, spice, webdavd, vdagent, virt-manager, linux" />
+		<meta name="author" content="Willian Donadelli"/>
+		<meta name="description" content="Como contruir uma lista interativa com a biblioteca wd" />
+		<meta name="rating" content="general" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
+		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
+	</head>
+
+<body data-wd-device="desktop{wd-center}" class="wd-bg-white">
+
+	<main class="wd-report wd-border-box wd-padding-length">
+
+		<h1 class="wd-case-caps">gnome-boxes</h1>
+		
+		<h2>Virtualizando um sistema operacional com o Boxes</h2>
+
+		<p class="wd-align-right">28 de novembro de 2020</p>
+
+		<h3>Apresentação</h3>
+
+		<p>O propósito deste artigo é descrever a experiência de virtualizar um sistema operacional a partir do <i>software</i> <a href="https://wiki.gnome.org/Apps/Boxes" target="_blank">gnome-boxes</a>.</p>
+		
+		<p>Segundo <a href="https://help.gnome.org/users/gnome-boxes/3.8/" target="_blank">manual</a> da aplicação na <i>web</i> em 28/11/2020:</p>
+
+		<blockquote><i>Boxes is an application that gives you access to virtual machines, running locally or remotely. It also allows you to connect to the display of a remote computer.</i></blockquote>
+
+
+		<blockquote>Boxes é um aplicativo que dá acesso a máquinas virtuais, rodando local ou remotamente. Ele também permite que você se conecte à tela de um computador remoto. (<cite class="wd-fg-gray">por <a href="https://translate.google.com.br/" target="_blank">Google Tradutor</a></cite>)</p>
+		</blockquote>
+
+		<p>Segundo a <a href="https://wiki.gnome.org/Apps/Boxes" target="_blank">página</a> da aplicação em 28/11/2020:</p>
+
+
+		<blockquote><i>While virt-manager does a very good job as a virtual machine management software, it's very much tailored for system administration and virtual machines. Boxes, on the other hand, is targeted towards a typical desktop end-user who wants either a very safe and easy way to try out new operating systems or new (potentially unstable) versions of her/his favorite operating system(s), or needs to connect to a remote machine (home-office connection being a typical use-case). For this reason, Boxes does not provide many of the advanced options to tweak virtual machines provided by virt-manager. Instead, Boxes focuses on getting things working out of the box with very little input from user. <br>That said, Boxes shares a lot of code with virt-manager project, mainly in the form of libvirt, libosinfo and qemu. </i></blockquote>
+
+		<blockquote>Embora virt-manager faça um trabalho muito bom como software de gerenciamento de máquina virtual, ele é muito adequado para administração de sistema e máquinas virtuais. O Boxes, por outro lado, é direcionado a um usuário final de desktop típico que deseja uma maneira muito segura e fácil de experimentar novos sistemas operacionais ou novas versões (potencialmente instáveis) de seu(s) sistema(s) operacional(is) favorito(s), ou precisa se conectar a uma máquina remota (a conexão do escritório doméstico é um caso de uso típico). Por esse motivo, o Boxes não oferece muitas das opções avançadas para ajustar as máquinas virtuais fornecidas pelo virt-manager. Em vez disso, o Boxes se concentra em fazer as coisas funcionarem prontamente com muito pouca entrada do usuário. <br>Dito isso, o Boxes compartilha muito código com o projeto virt-manager, principalmente na forma de libvirt, libosinfo e qemu. (<cite class="wd-fg-gray">por <a href="https://translate.google.com.br/" target="_blank">Google Tradutor</a></cite>)</blockquote>
+
+		<p>Neste artigo será apresentado apenas algumas ferramentas da aplicação, caso deseje saber mais informações, veja as páginas seguintes:</p>
+
+		<ul>
+			<li><a href="https://wiki.gnome.org/Apps/Boxes" target="_blank" class="wd-attr-href"></a></li>
+			<li><a href="https://help.gnome.org/users/gnome-boxes/3.8/" target="_blank" class="wd-attr-href"></a></li>
+		</ul>
+
+		<h3>Página Principal</h3>
+
+		<p>Essa é a interface principal da aplicação com máquinas já virtualizadas:</p>
+
+		<figure >
+			<a href="imagens/gnome-boxes-interface-principal.png"><img src="imagens/gnome-boxes-interface-principal.png" alt="Interface principal da aplicação" /></a>
+			<figcaption title="Figura ">Interface principal</figcaption>
+		</figure>
+
+		<p>O ícone <img src="imagens/gnome-boxes-icone-mais.png" alt="Ícone MAIS" /> proporciona a criação de uma nova máquina virtual - <abbr title="Máquina Virtual">MV</abbr> ou conexão remota - <abbr title="Conexão Remota">CR</abbr> a um computador:</p>
+
+		<figure >
+			<a href="imagens/gnome-boxes-icone-mais-aberto.png"><img src="imagens/gnome-boxes-icone-mais-aberto.png" alt="Ícone MAIS aberto" /></a>>
+			<figcaption title="Figura ">Nova virtualização/conexão</figcaption>
+		</figure>
+
+		<p>As funções <img src="imagens/gnome-boxes-exibicao.png" alt="Ícones Todos/Local/Remoto" /> definem os objetos a serem exibidos na tela: todos, somente <abbr title="Máquina Virtual">MV</abbr> ou somente <abbr title="Conexão Remota">CR</abbr>, respectivamente.</p>
+
+		<p>Completando os ícones da tela principal, tem-se:</p>
+
+		<dl>
+			<dd><img src="imagens/gnome-boxes-icone-busca.png" alt="Ícone de Busca" /> Busca uma <abbr title="Máquina Virtual">MV</abbr> ou <abbr title="Conexão Remota">CR</abbr> em particular.</dd>
+			<dd><img src="imagens/gnome-boxes-icone-visual.png" alt="Ícone de forma de Visualização" /> Alterna a forma de visualização dos objetos na tela para em linha ou em bloco.</dd>
+			<dd><img src="imagens/gnome-boxes-icone-selecao.png" alt="Ícone de Seleção múltipla" /> Permite selecionar múltiplos objetos da tela para abrir, favoritar, pausar ou excluir <abbr title="Máquina Virtual">MV</abbr> ou <abbr title="Conexão Remota">CR</abbr>.</dd>
+			<dd><img src="imagens/gnome-boxes-icone-menu.png" alt="Ícone de Menu da aplicação" /> Menu da aplicação.</dd>
+		</dl>
+
+		<h3>Virtualizando um Sistema</h3>
+
+		<p>Ao criar uma nova <abbr title="Máquina Virtual">MV</abbr>, o Boxes solicitará a seleção da imagem de um sistema operacional ao usuário e oferecerá a possibilidade de efetuar diretamente o <i>download</i> a partir de uma lista de sistemas definida pela aplicação:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-nova-mv.png"><img src="imagens/gnome-boxes-nova-mv.png" alt="Janela para iniciar uma nova MV" /></a>
+			<figcaption title="Figura ">Iniciando nova máquina virtual</figcaption>
+		</figure>
+
+		<p>Os sistemas em destaque são exibidos na tela inicial, caso deseje ver outras opções, clique no botão correspondente.</p>
+
+		<p>O indicar a imagem do sistema ou finalizar o <i>download</i>, o Boxes definirá os requisitos mínimos para instalação do sistema operacional:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-nova-mv-padrao.png"><img src="imagens/gnome-boxes-nova-mv-padrao.png" alt="Janela de uma nova MV com os requisitos mínimos" /></a>
+			<figcaption title="Figura ">Requisitos mínimos padrão</figcaption>
+		</figure>
+
+		<p>Caso queira personalizar as configurações definidas por padrão, basta clicar no ícone correspondente. Como anunciado, o Boxes não oferece muitas possibilidades de configuração, focando apenas no básico:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-nova-mv-personalizar.png"><img src="imagens/gnome-boxes-nova-mv-personalizar.png" alt="Janela de personalização de uma nova MV" /></a>
+			<figcaption title="Figura ">Personalizando configurações</figcaption>
+		</figure>
+
+		<p>Para alguns sistemas operacionais, há a <q>Instalação Expressa</q> que otimiza as configurações para o sistema escolhido. O sistema também é virtualizado automaticamente a partir das informações inseridas na janela diminuindo ou evitando intervenções dos usuários durante o processo:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-nova-mv-expressa-debian.png"><img src="imagens/gnome-boxes-nova-mv-expressa-debian.png" alt="Janela de instalação expressa de uma nova MV (Debian)" /></a>
+			<figcaption title="Figura ">Instalação expressa do Debian</figcaption>
+		</figure>
+
+		<figure>
+			<a href="imagens/gnome-boxes-nova-mv-expressa-windows7.png"><img src="imagens/gnome-boxes-nova-mv-expressa-windows7.png" alt="Janela de instalação expressa de uma nova MV (Windows 7)" /></a>
+			<figcaption title="Figura ">Instalação expressa do Windows 7</figcaption>
+		</figure>
+
+		<h3>Abrindo a Máquina Virtual</h3>
+
+		<p>Para abrir a <abbr title="Máquina Virtual">MV</abbr>, basta clicar sobre o ícone correspondente na interface principal.</p>
+
+		<p>Ao abrir o menu de contexto da <abbr title="Máquina Virtual">MV</abbr> desligada, têm-se as seguintes opções habilitadas:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-menu-contexto-desligada.png"><img src="imagens/gnome-boxes-menu-contexto-desligada.png" alt="Menu de contexto com a máquina virtual desligada" /></a>
+			<figcaption title="Figura ">Menu de contexto (MV desligada)</figcaption>
+		</figure>
+
+		<p>As opção <q>Adicionar aos favoritos</q> adiciona uma estrela à máquina virtual e a deixa no início da lista. As demais opções habilitadas fazem o que prometem.</p>
+
+		<p>O menu de propriedade possibilita definir o nome da <abbr title="Máquina Virtual">MV</abbr>, alterar configurações, adicionar mídia (CD/DVD) e capturar o estado da <abbr title="Máquina Virtual">MV</abbr> para uma necessária recuperação futura. Observe as opções de gerenciamento em cada tela:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-propriedades-aba1.png"><img src="imagens/gnome-boxes-propriedades-aba1.png" alt="Aba <q>Geral</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: nome da MV (MV desligada)</figcaption>
+		</figure>
+
+		<figure>
+			<a href="imagens/gnome-boxes-propriedades-aba2.png"><img src="imagens/gnome-boxes-propriedades-aba2.png" alt="Aba <q>Sistema</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: configurações da MV (MV desligada)</figcaption>
+		</figure>
+
+		<figure>
+			<a href="imagens/gnome-boxes-propriedades-aba3.png"><img src="imagens/gnome-boxes-propriedades-aba3.png" alt="Aba <q>Dispositivos e compartilhamentos</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: mídia CD/DVD (MV desligada)</figcaption>
+		</figure>
+
+		<figure>
+			<a href="imagens/gnome-boxes-propriedades-aba4.png"><img src="imagens/gnome-boxes-propriedades-aba4.png" alt="Aba <q>Capturas</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: captura de estado (MV desligada)</figcaption>
+		</figure>
+
+		<h3>Rodando a Máquina Virtual</h3>
+
+		<p>Ao rodar a <abbr title="Máquina Virtual">MV</abbr>, a seguinte janela é executada:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv.png"><img src="imagens/gnome-boxes-mv.png" alt="Janela com a máquina virtual rodando" /></a>
+			<figcaption title="Figura ">MV rodando</figcaption>
+		</figure>
+
+		<p>No centro da página é exibido o nome da máquina virtual, também os seguintes ícones são exibidos:</p>
+
+		<dl>
+			<dd><img src="imagens/gnome-boxes-mv-icone-voltar.png" alt="Ícone para voltar" /> Retorna para a tela principal da aplicação.</dd>
+			<dd><img src="imagens/gnome-boxes-mv-icone-tela-cheia.png" alt="Ícone para tela cheia" /> Deixa a virtualização em tela cheia.</dd>
+			<dd><img src="imagens/gnome-boxes-mv-icone-atalhos.png" alt="Ícone de atalhos" /> Aplica alguns atalhos de teclado.</dd>
+			<dd><img src="imagens/gnome-boxes-mv-icone-menu.png" alt="Ícone de menu" /> Menu da virtualização.</dd>
+		</dl>
+
+		<p>As seguintes opções de atalhos de teclado são exibidas:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv-icone-atalhos-detalhes.png"><img src="imagens/gnome-boxes-mv-icone-atalhos-detalhes.png" alt="Menu dos atalhos de teclado" /></a>
+			<figcaption title="Figura ">Atalhos de teclados</figcaption>
+		</figure>
+
+		<p>As seguintes opções no menu da virtualização são exibidas. A opção <q>Enviar arquivo...</q> permite transferir arquivos da máquina hospedeira para a máquina convidada. Quanto às demais opções, cumprem aquilo que anunciam:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv-icone-menu-detalhes.png"><img src="imagens/gnome-boxes-mv-icone-menu-detalhes.png" alt="Menu da virtualização" /></a>
+			<figcaption title="Figura ">Menu da virtualização</figcaption>
+		</figure>
+
+		<p>Ao voltar para a tela principal, o menu de contexto é exibido da seguinte forma:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv-menu-contexto.png"><img src="imagens/gnome-boxes-mv-menu-contexto.png" alt="Menu de contexto com a MV ligada" /></a>
+			<figcaption title="Figura ">Menu de contexto (MV ligada)</figcaption>
+		</figure>
+
+		<p>Quanto ao menu propriedades, com a <abbr title="Máquina Virtual">MV</abbr>, as seguintes abas apresentam diferenças com relação à <abbr title="Máquina Virtual">MV</abbr> desligada:</p>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv-propriedades-aba2.png"><img src="imagens/gnome-boxes-mv-propriedades-aba2.png" alt="Aba <q>Sistema</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: configurações da MV (MV ligada)</figcaption>
+		</figure>
+
+		<figure>
+			<a href="imagens/gnome-boxes-mv-propriedades-aba3.png"><img src="imagens/gnome-boxes-mv-propriedades-aba3.png" alt="Aba <q>Dispositivos e compartilhamentos</q> da janela de propriedades" /></a>
+			<figcaption title="Figura ">Propriedades: outras opções da MV (MV ligada)</figcaption>
+		</figure>
+
+		<p>Na aba <q>Sistema</q> agora estão habilitados as opções para reiniciar e forçar o desligamento e na aba <q>Dispositivos e compartilhamentos</q>, além de possibilitar adicionar mídia (CD/DVD), também é possível selecionar dispositivos USB e compartilhar pastas entre a máquina hospedeira e convidada.</p>
+
+		<h3>Pacotes Complementares</h3>
+
+		<p>Para mais detalhes sobre virtualização, acesse <a href="https://access.redhat.com/documentation/pt-br/red_hat_enterprise_linux/5/html/virtualization/index" target="_blank" class="wd-attr-href"></a>.</p>
+
+		<p>Para que a virtualização funcione bem, recomenda-se que as extensões de hardware de virtualização no BIOS sejam habilitadas, se houver. Descubra se sua placa possui tal ferramenta.</p>
+
+		<p>Para compartilhar a área de transferência e pastas entre a máquina hospedeira e convidada, não esqueça de instalar os pacotes <a href="https://www.spice-space.org/download.html" target="_blank">SPICE</a> <code>vdagent</code> e <code>webdavd</code>. Para virtualizar Windows, acesse <a href="https://www.spice-space.org/download.html" target="_blank" class="wd-attr-href"></a> e procure pelos pacotes <a href="https://www.spice-space.org/download/windows/spice-guest-tools/spice-guest-tools-latest.exe" download="spice-guest-tools-latest.exe" >spice-guest-tools</a> e <a href="https://www.spice-space.org/download/windows/spice-webdavd/" target="_blank" >Spice WebDAV daemon</a>.</p>
+
+		<p>Para virtualizar Windows, caso seja necessário atualizar algum <i>drive</i>, acesse o sítio da <a href="https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html" target="_blank">Fedora</a> e baixe o pacote <a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso" download="virtio-win.iso">virtio</a> no formato ISO (CD/DVD). Para utilizá-lo, bastar carregá-lo como mídia CD/DVD conforme apresentado.</p>
+
+		<p>Para escrever este artigo, o Boxes foi testado com o Ubuntu 20.04.1 LTS.</p>
+
+	</main>
+
+</body>
+</html>
