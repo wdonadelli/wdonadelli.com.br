@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html class="wd">
+
+	<head>
+		<title>WDonadelli - Git+Hub</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="git, github, desenvolvimento, programação, versionamento" />
+		<meta name="author" content="Willian Donadelli"/>
+		<meta name="description" content="Utilizando os comandos básicos do Git e GitHub" />
+		<meta name="rating" content="general" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
+		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
+	</head>
+
+<body data-wd-device="desktop{wd-center}" class="wd-bg-white">
+
+	<main class="wd-report wd-border-box wd-padding-length">
+
+		<h1 class="wd-case-caps">O Básico do Git+Hub</h1>
+		
+		<h2>Utilizando os comandos básicos do Git e GitHub</h2>
+
+		<p class="wd-align-right">03 de dezembro de 2020</p>
+
+		<p>O propósito deste artigo é descrever alguns comandos básicos do Git e a integração com o GitHub.</p>
+		
+		<p>Segundo o sítio <a href="https://git-scm.com/" target="_blank" class="wd-attr-href"></a> em 03/12/2020:</p>
+
+		<blockquote><i>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</br>Git is easy to learn and has a tiny footprint with lightning fast performance. It outclasses SCM tools like Subversion, CVS, Perforce, and ClearCase with features like cheap local branching, convenient staging areas, and multiple workflows. </i></blockquote>
+
+		<blockquote>Git é um sistema de controle de versão distribuído gratuito e de código aberto projetado para lidar com tudo, desde projetos pequenos a muito grandes com velocidade e eficiência.</br>Git é fácil de aprender e ocupa uma área pequena com desempenho extremamente rápido. Ele supera as ferramentas SCM como Subversion, CVS, Perforce e ClearCase com recursos como ramificação local barata, áreas de preparação convenientes e vários fluxos de trabalho. (<cite class="wd-fg-gray">por <a href="https://translate.google.com.br/" target="_blank">Google Tradutor</a></cite>)
+		</blockquote>
+
+		<p>Segundo a <a href="https://pt.wikipedia.org/wiki/GitHub" target="_blank">Wikipédia</a> sobre o <a href="https://github.com/" target="_blank">GitHub</a> em 03/12/2020:</p>
+
+
+		<blockquote>GitHub é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando o Git. Ele permite que programadores, utilitários ou qualquer usuário cadastrado na plataforma contribuam em projetos privados e/ou Open Source de qualquer lugar do mundo. GitHub é amplamente utilizado por programadores para divulgação de seus trabalhos ou para que outros programadores contribuam com o projeto, além de promover fácil comunicação através de recursos que relatam problemas ou mesclam repositórios remotos (issues, pull request).</blockquote>
+
+		<p>Este artigo não possui tudo que as aplicações oferecem, apresenta apenas uma das maneiras de utilizar suas ferramentas.</p>
+
+		<h3>O Início</h3>
+
+		<p>As duas primeiras coisas a se fazer para utilizar o Git e o GitHub são instalar a aplicação e criar uma conta no sítio <a href="https://github.com/" target="_blank" class="wd-attr-href"></a>, respectivamente.</p>
+
+		<p>A instalação do Git no computador depende do seu sistema operacional. Verifique se a loja de aplicativos do sistema operacional oferece o sistema para instalação ou veja as orientações em <a href="https://git-scm.com/downloads" target="_blank" class="wd-attr-href"></a>. Com o Ubuntu 20.04 LTS, basta executar como <i>root</i>:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>sudo</em> <em>apt</em> install git</pre>
+
+		<p>Com a conta do GitHub realizada, o endereço do seu perfil será <span class="wd-u wd-i">https://github.com/usuario</span>, onde <code>usuario</code> é seu identificador no GitHub.</p>
+
+		<h3>Criando o Diretório no GitHub</h3>
+
+		<p>Para iniciar um novo projeto no GitHub é preciso criar um diretório. Caso tenha dúvida em como proceder, observe as orientações da própria aplicação. Após criado o diretório, seu endereço será <span class="wd-u wd-i">https://github.com/usuario/diretorio</span>, onde <code>diretorio</code> é o identificador do diretório no GitHub.</p>
+
+		<p>Acredito ser produtivo criar o diretório primeiro no GitHub, pois a aplicação te guiará no processo de criação além de te dar a possibilidade de criar automaticamente os arquivos <i>README.md</i>, <i>LICENSE</i> e <i>.gitignore</i>, muito úteis para seu projeto.</p>
+
+		<p>O arquivo <i>README.md</i>, que utiliza a marcação <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">markdown</a>, é o responsável por fazer a apresentação do seu projeto no GitHub. Faça uma boa apresentação para todos conhecerem o seu objetivo, a sua aplicabilidade, a linguagem utilizada, a página da aplicação, o manual... O GitHub oferece algumas ferramentas interessantes como o <i>wiki</i>, para construção de um guia da sua aplicação, por exemplo, e o <i>gh-pages</i>, para a construção de uma página para sua aplicação, dentre outras.</p>
+
+		<p>O arquivo <i>LICENSE.md</i> diz respeito à licença do seu projeto. Se quiser que alguém utilize sua ideia, é preciso dar permissão e dizer como ela ocorrerá. Procure saber um pouco a respeito.</p>
+
+		<p>O arquivo <i>.gitignore</i> é um arquivo interessante a depender da linguagem de programação escolhida. Ao rodar/compilar sua aplicação, alguns arquivos auxiliares, de log, ou que não fazer parte do escopo do projeto, podem ser criados automaticamente pelo compilador/intepretador e o <i>.gitignore</i> fará com que esses arquivos não sejam colocados no seu diretório GitHub, deixando-o limpo e organizado.</p>
+
+		<h3>Clonando o Diretório com o Git</h3>
+
+		<p>Após a criação do diretório no GitHub, é hora de cloná-lo no sua estação de trabalho, pois é nela que o desenvolvimento ocorrerá. Para isso, entra em cena o Git.</p>
+
+		<p>Todos os comandos aqui demonstrados devem ser executados numa interface <abbr title="Interface de Linha de Comando">CLI</abbr> com o uso de um terminal. No caso, foi utilizado o terminal padrão do Ubuntu 20.04 LTS. Caso ache mais confortável utilizar uma interface <abbr title="Interface Gráfica de Usuário">GUI</abbr>, verifique na sua loja de aplicativos.</p>
+
+		<p>Crie um diretório no computador para clonar seus projetos e acesse-o:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#criando o diretório</cite>
+<em>mkdir</em> projetos/
+<cite>#acessando o diretório</cite>
+<em>cd</em> projetos/
+</pre>
+
+		<p>Para efetuar a clonagem do diretório do GitHub na estação de trabalho, execute o seguinte comando, observando o identificador real do usuário e do diretório no GitHub:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> clone <q>https://github.com/usuario/diretorio.git</q></pre>
+
+		<p>Acesse o diretório clonado para iniciar os trabalhos:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>cd</em> diretorio/</q></pre>
+
+		<h3>Ramificações</h3>
+
+
+
+
+
+
+
+
+
+
+	</main>
+
+</body>
+</html>
