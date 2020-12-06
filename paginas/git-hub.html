@@ -40,7 +40,7 @@
 
 		<p>Este artigo não possui tudo que as aplicações oferecem, apresenta apenas uma das maneiras de utilizar suas ferramentas.</p>
 
-		<h3>O Início</h3>
+		<h3>Primeiros Passos</h3>
 
 		<p>As duas primeiras coisas a se fazer para utilizar o Git e o GitHub são instalar a aplicação e criar uma conta no sítio <a href="https://github.com/" target="_blank" class="wd-attr-href"></a>, respectivamente.</p>
 
@@ -50,11 +50,11 @@
 
 		<p>Com a conta do GitHub realizada, o endereço do seu perfil será <span class="wd-u wd-i">https://github.com/usuario</span>, onde <code>usuario</code> é seu identificador no GitHub.</p>
 
-		<h3>Criando o Diretório no GitHub</h3>
+		<h3>Criando o Repositório no GitHub</h3>
 
-		<p>Para iniciar um novo projeto no GitHub é preciso criar um diretório. Caso tenha dúvida em como proceder, observe as orientações da própria aplicação. Após criado o diretório, seu endereço será <span class="wd-u wd-i">https://github.com/usuario/diretorio</span>, onde <code>diretorio</code> é o identificador do diretório no GitHub.</p>
+		<p>Para iniciar um novo projeto no GitHub é preciso criar um repositório. Caso tenha dúvida em como proceder, observe as orientações da própria aplicação. Após criado o repositório, seu endereço será <span class="wd-u wd-i">https://github.com/usuario/diretorio</span>, onde <code>diretorio</code> é o identificador do repositório no GitHub. <span class="wd-fg-red">Neste artigo, <b>REPOSITÓRIO</b> e <b>DIRETÓRIO</b> serão sinônimos, já que o <u>repositório no GitHub</u> será um <u>diretório na estação de trabalho</u></span>.</p>
 
-		<p>Acredito ser produtivo criar o diretório primeiro no GitHub, pois a aplicação te guiará no processo de criação além de te dar a possibilidade de criar automaticamente os arquivos <i>README.md</i>, <i>LICENSE</i> e <i>.gitignore</i>, muito úteis para seu projeto.</p>
+		<p>É de certa forma interessante criar o diretório primeiro no GitHub e não diretamente no git (<code class="wd-code"><em>git</em> init</code>), pois a aplicação te guiará no processo de criação do diretório e te oferecerá a criação automática de alguns arquivos úteis ao seu projeto, como o <i>README.md</i>, <i>LICENSE</i> e <i>.gitignore</i>.</p>
 
 		<p>O arquivo <i>README.md</i>, que utiliza a marcação <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">markdown</a>, é o responsável por fazer a apresentação do seu projeto no GitHub. Faça uma boa apresentação para todos conhecerem o seu objetivo, a sua aplicabilidade, a linguagem utilizada, a página da aplicação, o manual... O GitHub oferece algumas ferramentas interessantes como o <i>wiki</i>, para construção de um guia da sua aplicação, por exemplo, e o <i>gh-pages</i>, para a construção de uma página para sua aplicação, dentre outras.</p>
 
@@ -73,6 +73,7 @@
 		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
 <cite>#criando o diretório</cite>
 <em>mkdir</em> projetos/
+
 <cite>#acessando o diretório</cite>
 <em>cd</em> projetos/
 </pre>
@@ -87,16 +88,158 @@
 
 		<h3>Ramificações</h3>
 
+		<p>O Git trabalha com o conceito de ramificações, os chamados <i>branch</i>.</p>
+
+		<p>O ramo principal, chamado de <i>master</i> ou <i>main</i>, é o local onde a versão apta para o <q>consumo</q> deve ficar.</p>
+
+		<p>Exceto se seu projeto já estiver pronto, não será no ramo principal que irás trabalhar, será necessário criar um novo ramo para que o projeto seja construído ou atualizado. Para criar um novo ramo, execute o seguinte comando:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> branch <var>novoRamo</var></pre>
+
+		<p>Tente nomeá-lo de forma a representar o que o ramo significa (e.g. <q>criarCaixaDialogo</q>), é mais interessante para se organizar e trabalhar em grupo. Para navegar entre os diferentes ramos, utilize o seguinte comando:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> checkout <var>nomeRamo</var></pre>
+
+		<p>Outra alternativa é usar o comando abaixo, que cria e acessa o ramo na sequência:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> checkout -b <var>novoRamo</var></pre>
+
+		<p>Um comando muito importante e que deverá ser utilizado com frequência é o abaixo demonstrado:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> status</pre>	
+
+		<p>Esse comando te informará sobre o ramo que estás a trabalhar além de trazer informações importantes sobre o atual estado do ramo. Execute-o sem restrições antes de fazer qualquer modificação, isso te orientará quando as coisas ficarem nebulosas.</p>
+
+		<h3>Fazendo Alterações</h3>
+
+		<p>Uma vez dentro do ramo criado para construção/atualização do projeto, é hora de trabalhar.</p>
+
+		<p>Ao criar/alterar o conteúdo do seu projeto, é possível registrar as alterações parciais de modo a <q>salvá-las</q>, além de ser possível tecer comentários sobre as atualizações efetuadas.</p>
+		
+		<p>Primeiro é preciso adicionar sua atualização ao ramo. Há duas formas de se fazer isso, individualmente (por arquivo), ou generalizada (todos os arquivos). Os comandos abaixo exibem essas duas formas:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Individualmente</cite>
+<em>git</em> add <var>arquivo</var>
+
+<cite>#Generalizada</cite>
+<em>git</em> add <var>*</var>
+</pre>
+
+		<p>O git retornará alguma mensagem caso exista alguma pendência. O comando <code class="wd-code"><em>git</em> status</code> também te ajudará nisso.</p>
+
+		<p>Caso algum arquivo tenha sido apagado, use o comando abaixo para efetuar o registro desta remoção:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> rm <var>arquivo</var></pre>
+
+		<p>Todas atualizações efetuadas precisarão ser adicionadas/removidas ao projeto antes de salvá-las no ramo (<code>add/rm</code>). Para salvar o projeto é necessário registrar um comentário sobre a atualização. Atualizações importantes carecem de comentários ricos (bons comentários não geram arrependimentos). Para salvar a atualização do projeto no ramo, use o comando abaixo:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> commit -m <q>Comentário sobre a atualização</q></pre>
+
+		<p>Caso queira desfazer as atualizações, antes de efetuar o <i>commit</i>, é possível fazê-la com os comandos abaixo:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Individualmente</cite>
+<em>git</em> reset <var>arquivo</var>
+
+<cite>#Generalizada</cite>
+<em>git</em> reset
+</pre>
+
+		<p>Consulte a documentação antes de executar comandos que desfazem ações para evitar perder algo importante. Observe se o resultado da ação corresponderá às expectativas.</p>
+
+		<p>Utilize o comando abaixo para consultar o histórico de atualizações. Nele é exibido o identificador do <i>commit</i>, informações sobre o autor e a data de atualização e o respectivo comentário realizado (capriche nos comentários):</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> log</pre>
+
+		<p>Também é possível comparar o projeto entre os diferentes ramos com o comando abaixo:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> diff <var>ramo1</var> <var>ramo2</var></pre>
+
+		<h3>Atualizando o GitHub</h3>
+
+		<p>Até agora o projeto está salvo apenas dentro da estação de trabalho. Para atualizar a informação no GitHub é preciso <q>empurá-la</q> para a aplicação através do seguinte comando:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> push origin <var>nomeRamo</var></pre>
+
+		<p>Para cada atualização migrada para o GitHub, o git solicitará o nome do usuário e a respectiva senha da conta. Uma maneira de evitar tantas solicitações desta natureza é definindo um prazo de validade, em segundos, da sessão com o comando abaixo:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Definindo sessão com validade de 1 minuto</cite>
+<em>git</em> config --global credential.helper <q>cache --timeout=3600</q></pre>
+
+		<p>Caso seja efetuada alguma atualização em outra estação de trabalho ou diretamente no GitHub, é possível trazê-la para a sua estação de trabalho com o seguinte comando:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> pull</pre>
+
+		<h3>Concluindo o Trabalho</h3>
+
+		<p>Após concluído o trabalho no ramo secundário, é preciso levar o resultado dessa atualização para o ramo principal (<i>master/main</i>), vamos fundir os ramos.</p>
+
+		<p>Para executar essa migração para o ramo principal, primeiro é preciso acessá-lo e então executar o comando que efetuará a pretendida migração, conforme comandos abaixo:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Acessando o ramo principal</cite>
+<em>git</em> checkout <var>master</var>
+
+<cite>#Atualizando o ramo principal</cite>
+<em>git</em> merge <var>nomeRamo</var>
+</pre>
+
+		<p>A ideia acima também pode ser usada nas situações em que é preciso migrar atualizações entre ramos, não somente para o principal.</p>
+
+		<p>Dependendo da complexidade da atualização, algumas verificações e alterações manuais nos arquivos serão necessárias. O sistema tenta fazer a compilação entre os ramos de forma automática, mas podem acontecer situações em que alterações ou remoções manuais no ramo de destino sejam necessárias, devendo o usuário efetuá-las antes de executar novamente o comando. Observe as orientações dadas pelo git. Algum comentário sobre o atualização entre os ramos pode ser solicitado (um arquivo de texto será aberto no terminal, observe a legenda do editor).</p>
+
+		<p>Não esqueça de enviar as informações para o GitHub com o comando <code class="wd-code"><em>git</em> push</code> visto anteriormente.
+
+		<p>Uma outra atitude saudável é promover o versionamento do projeto toda vez que o ramo principal receber novas informações relevantes sobre ele (nem tudo que for alterado no git vai precisar de versão, só o que mudar o projeto em si). Para efetuar o versionamento, será preciso efetuar um comentário e registrar o identificador da versão. Os comandos abaixo registram e enviam o versionamento para o GitHub:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Registrando o versionamento</cite>
+<em>git</em> tag -a <q>versão</q> -m <q>Comentário da versão</q>
+
+<cite>#Enviando o versionamento para o GitHub</cite>
+<em>git</em> push origin --tags
+</pre>
+
+		<p>Outra maneira de fazer o versionamento é por meio do identificador de algum <i>commit</i> realizado. Neste caso, é preciso localizar (<code class="wd-code"><em>git</em> log</code>) e copiar o identificador do <i>commit</i> para informá-lo no comando. O comando teria o seguinte formato:</p>
+
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> tag <q>versão</q> <var>ID</var></pre>
 
 
+		<p>Com a atualização pronta, o ramo secundário ficará sem utilidade. Caso seja necessário outra atualização, basta criar um novo ramo para isso. Portanto, podemos apagá-lo do projeto (se realmente não tiver mais utilidade). Para isso deverá ser realizado os seguintes comandos, em um ramo diferente, para apagar o ramo e enviar tal registro ao GitHub:</p>
 
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin">
+<cite>#Apagando o ramo no git</cite>
+<em>git</em> branch -d <var>nomeRamo</var>
 
+<cite>#Enviando a atualização para o GitHub</cite>
+<em>git</em> origin <var>:nomeRamo</var>
+</pre>
 
+		<h3>Disposições Finais</h3>
 
+		<p>O comando perigoso abaixo permite cancelar todos as alterações e <i>commits</i> locais e recuperar a informação do GitHub:</p>
 
+		<pre class="wd-padding wd-radius wd-cloud wd-code wd-margin"><em>git</em> reset --hard origin/master</pre>
 
+		<p>O GitHub possui uma ferramenta muito interessante que possibilita a criação de uma página web (estática) para o seu projeto, tal página é disponibilizada através da criação do ramo especial <i>gh-pages</i>.</p>
+
+		<p>Dentro do ramo, deve-se criar uma página, no formato HTML ou <i>markdown</i>, com o nome <i>index</i> (e.g. <i>index.html</i> ou <i>index.md</i>) e enviar a informação do ramo para o GitHub. Para acessar a paǵina na web basta acessar o endereço <span class="wd-i wd-u">https://usuario.github.io/diretorio/</span>. Dentro das opções de configuração do GitHub, é possível obter modelos de formatação da página quando se escolhe utilizar o formato <i>markdown</i>.</p>
+
+		<p>Outra ferramenta interessante é o <i>wiki</i> do GitHub. É um repositório especial denominado <i>diretorio.wiki</i> que possibilita a criação de uma página em <i>markdown</i> para descrever o funcionamento ou apresentar o manual do projeto. É preciso habilitá-lo dentro das configurações do GitHub, depois é possível cloná-lo na estação de trabalho e realizar as atualizações localmente.</p>
+
+		<p>Diversas páginas podem ser criadas, inclusive há uma página para criação de um menu lateral (<i>_Sidebar.md</i>) e outra para elaborar o rodapé (<i>_Footer.md</i>), observe as orientações fornecidas pelo GitHub. A página inicial deve ser denominada <i>Home.md</i> e pode ser acessada pelo endereço <span class="wd-i wd-u">https://github.com/usuario/diretorio/wiki</span>.</p>
+
+		<p>Outro repositório especial do GitHub é aquele denominado com o nome do usuário. Uma mensagem personalizada é exibida ao acessar o perfil do usuário no GitHub, uma maneira do proprietário do perfil alertar sobre alguma novidade em seus repositórios. Neste caso, o arquivo <i>README.md</i> é o responsável por conter a mensagem.</p>
+
+		<p>O GitHub possui outros atrativos, procure conhecê-los e ver se podem agregar algo ao seu projeto.</p>
+
+		<p class="wd-align-right">Willian Donadelli</p>
 
 	</main>
+
+	<footer class="wd-bg-black wd-buddy-bottom wd-padding" data-wd-load="get{rodape.html}"></footer>
 
 </body>
 </html>
