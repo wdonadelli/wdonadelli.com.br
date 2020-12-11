@@ -1,26 +1,34 @@
 [
 	{
 		"href": "paginas/slide.html",
-		"imagem": "imagens/flor.png",
+		"imagem": "imagens/slide.png",
 		"frase1": "Como construir...",
-		"frase2": "...um carrossel de elementos"
+		"frase2": "...um bloco de slides",
+		"alt": "",
+		"cor": "wd-fg-blue"
 	},
 	{
 		"href": "paginas/lista-interativa.html",
 		"imagem": "imagens/flor.png",
 		"frase1": "Como construir...",
-		"frase2": "...uma lista interativa"
+		"frase2": "...uma lista interativa",
+		"alt": "",
+		"cor": "wd-fg-blue"
 	},
 	{
 		"href": "paginas/gnome-boxes.html",
 		"imagem": "imagens/gnome-boxes.png",
 		"frase1": "Como virtualizar...",
-		"frase2": "...com gnome-boxes"
+		"frase2": "...com gnome-boxes",
+		"alt": "Símbolo do Gnome-Boxes com a frase Virtualization made simple",
+		"cor": "wd-fg-black"
 	},
 	{
 		"href": "paginas/git-hub.html",
-		"imagem": "imagens/flor.png",
+		"imagem": "imagens/git-hub.png",
 		"frase1": "Utilizando...",
-		"frase2": "...o básico do GIT+HUB"
+		"frase2": "...o básico do GIT+HUB",
+		"alt": "Símbolo do GitHub com fundo preto",
+		"cor": "wd-fg-white"
 	}
 ]
