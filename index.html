@@ -14,26 +14,28 @@
 		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
 	</head>
 
-<body
-	data-wd-device="desktop{wd-center}"
-	class="wd-bg-paper"
-	style="background-image: url(imagens/flor.png);"
->
+<body	data-wd-device="desktop{wd-center}" class="wd-bg-black" >
 
-	<header class="wd-bg-black">
-		<h1 class="wd-case-caps wd-i">WDonadelli</h1>
+	<header class="wd-bg-white">
+		<h1>
+			<span class="wd-icon-menu" data-wd-action="toggle-open{#menu}" >
+			<span class="wd-case-caps wd-i">WDonadelli</span>
+		</h1>
 	</header>
 
-	<main class="wd-flyer">
+	<main class="wd-flyer wd-xxmargin-height-child">
 
 		<section>
 
-			<article>
+			<h3>Artigos</h3>
+
+			<article style="position: relative;" class="wd-border">
 				<div
 					data-wd-repeat="get{json/slides.json}"
-					data-wd-slide="4000"
+					data-wd-slide="5000"
 					data-wd-device="desktop{wd-size-xlarge}"
 					class="wd-b wd-radius wd-cloud"
+					id="slides"
 				>
 					<a href="{{href}}" >
 						<div style="position: relative; height: 10em; background-image: url({{imagem}});" class="wd-bg-image">
@@ -42,15 +44,80 @@
 						</div>
 					</a>
 				</div>
+
+				<span data-wd-action="prev{#slides}" class="wd-size-large wd-place-w wd-padding wd-bg-white wd-icon-left"  ></span>
+				<span data-wd-action="next{#slides}" class="wd-size-large wd-place-e wd-padding wd-bg-white wd-icon-right" ></span>
+
 			</article>
 
 		</section>
 
+
+		<section>
+
+			<h3>YouTube - Biblioteca WD</h3>
+
+			<div class="wd-hgrid">
+
+				<iframe src="https://www.youtube.com/embed/DcuxvjcYz3U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+				<iframe src="https://www.youtube.com/embed/7A_kB5yXU7U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+				<iframe src="https://www.youtube.com/embed/Zfy83ThpUjI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+				<iframe src="https://www.youtube.com/embed/lBXmARk2Gp8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+				<iframe src="https://www.youtube.com/embed/ixHghH22Bhs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+				<iframe src="https://www.youtube.com/embed/Up1B6ZwE89k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+				<iframe src="https://www.youtube.com/embed/Up1B6ZwE89k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+			</div>
+
+		</section>
+
+
+
+
+
+
+
+
+
 	</main>
 
-<footer class="wd-bg-black">
+	<div class="wd-modal" id="menu">
 
-<footer>
+		<div class="wd-flyer wd-bg-black" data-wd-device="desktop{wd-window-left}mobile{wd-window-full}" >
+
+			<header class="wd-bg-white">
+				<h2>
+					<span class="wd-icon-left" data-wd-action="close{#menu}"></span>
+					<span>Menu</span>
+				</h2>
+			</header>
+
+			<section>
+				<h3>Artigos</h3>
+				<nav data-wd-repeat="get{json/slides.json}" class="wd-block" >
+					<a href="{{href}}">{{frase1}} {{frase2}}</a>
+				</nav>
+			</section>
+
+		</div>
+
+	</div>
+
+
+
+
+
+
+	<footer class="wd-bg-black"><footer>
 
 </body>
 </html>
