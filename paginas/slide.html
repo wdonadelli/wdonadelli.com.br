@@ -20,19 +20,19 @@
 
 	<main class="wd-report wd-border-box wd-padding-length">
 
-		<h1 class="wd-case-caps">Apresentação de Slides</h1>
+		<h1 class="wd-case-caps">Carrossel de Blocos</h1>
 		
 		<h2>Construindo uma apresentação de slides com a biblioteca wd</h2>
 
 		<p class="wd-align-right">20 de novembro de 2020</p>
 
-		<p>O propósito deste artigo é descrever a construção de um <q>carrossel</q> de elementos cuja finalidade é a de exibir um elemento filho de cada vez na tela, seja de forma manual ou automática.</p>
+		<p>O propósito deste artigo é descrever a construção de um <q>carrossel</q> de elementos cuja finalidade é a de exibir, seja de forma manual ou automática, um elemento filho de cada vez na tela.</p>
 
 		<p>O manual da biblioteca wd pode ser encontrado no link <a href="https://github.com/wdonadelli/wd/wiki" class="wd-attr-href"></a>.</p>
 
 		<h3>Elementos Básicos</h3>
 
-		<p>Para demonstrar a construção do carrossel, será estabelecido um container pai contendo quatro elementos filhos, conforme abaixo apresentado:</p>
+		<p>Para demonstrar a construção do carrossel será estabelecido um container pai contendo quatro elementos filhos conforme apresentado abaixo:</p>
 		
 		<div>
 			<div>Slide 1</div>
@@ -49,7 +49,7 @@
 	<kbd>div</kbd>Slide 4<kbd>/div</kbd>
 <kbd>/div</kbd></pre>
 
-		<p>Para melhorar a visualização, cada elemento filho receberá uma altura de <var>150px</var>, fonte com tamanho maior, negrito e centralizada além de uma coloração individualizada:</p>
+		<p>Para ajudar na visualização, cada elemento filho receberá uma altura de <var>150px</var>, fonte com tamanho maior, em negrito e centralizada além de uma coloração individualizada:</p>
 
 		<div class="wd-b wd-size-xlarge wd-align-center">
 			<div style="height: 150px;" class="wd-bg-blue"  >Slide 1</div>
@@ -68,9 +68,9 @@
 
 		<h3>Exibição Manual</h3>
 
-		<p>Nesta fase serão contruídos os elementos de interação para exibir cada <i>slide</i> de forma individual.</p>
+		<p>Nesta fase serão contruídos os elementos de interação para exibir cada elemento filho (<i>slide</i>) individualmente.</p>
 		
-		<p>Para isso, cada elemento filho será contemplado com um identificador (<code>id</code>) e será necessário construir um navegador para manipular o carrossel. Esse navegador possibilitará escolher o elemento a ser exibido além dos elementos anterior ou posterior:</p>
+		<p>Para isso, cada elemento filho será contemplado com um identificador (<code>id</code>) e um navegador será contruído para manipular o carrossel. Esse navegador possibilitará escolher o elemento específico a ser exibido além de transitar entre o elemento anterior e posterior:</p>
 
 		<div class="wd-b wd-size-xlarge wd-align-center">
 			<div style="height: 150px;" id="slide0-1" class="wd-bg-blue"  >Slide 1</div>
@@ -105,9 +105,9 @@
 	<kbd>span class=<q>wd-icon-e</q> </kbd><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
-	<p>Para estabelecer a interação com o carrossel, será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
+	<p>Para estabelecer a interação com o carrossel será utilizado o atributo <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a ação definida e reage ao evento <q>click</q>.
 
-	<p>Para acessar os <i>slides</i> específicos, será utilizada a ação <code>tab</code>, indicando o identificador do elemento (filho), e para acessar os elementos posterior ou anterior serão utilizadas as ações <code>next</code> e <code>prev</code>, respectivamente. Para essas últimas ações, o elemento pai também deverá receber um identificador, cujo seletor será referenciado na interação:</p>
+	<p>Para acessar os <i>slides</i> específicos será utilizada a ação <code>tab</code>, referenciando o respectivo identificador, e para acessar o elemento posterior ou anterior serão utilizadas as ações <code>next</code> e <code>prev</code>, respectivamente. Para essas últimas ações, o elemento pai também deverá receber um identificador, cujo seletor será referenciado na interação:</p>
 
 		<div class="wd-b wd-size-xlarge wd-align-center" id="slides1">
 			<div style="height: 150px;" id="slide1-1" class="wd-bg-blue"  >Slide 1</div>
@@ -183,7 +183,7 @@
 		
 		<p>No lugar de construir um navegador para manipular a exibição dos elementos, apenas as ações <code>next</code> e <code>prev</code> permanecerão, entretanto, posicionadas dentro do container de <i>slides</i>, uma à direita e outra à esquerda, respectivamente.</p>
 		
-		<p>Para isso, um container externo deverá ser criado com posicionamento alterado para algo diferente do padrão (<i>static</i>), será escolhido o <i>relative</i>. Os botões com as ações serão inseridos dentro deste novo elemento pai através do objeto <code>span</code> e receberão os atributos de classe <code>wd-place-...</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-CSS-Utilities-Style#place" class="wd-icon-link" title="Sobre o atributo"></a></sup>. O container com os <i>slides</i> também será adcionado ao novo elemento de nível superior. Os identificadores dos <i>slides</i> não serão mais necessários. Após as modificações necessárias, a visualização ficará da seguinte forma:</p>
+		<p>Para isso, um container externo deverá ser criado com posicionamento alterado para algo diferente do padrão (<i>static</i>), que neste caso será definido como <i>relative</i>. Os botões com as ações serão inseridos dentro deste novo elemento pai através do objeto <code>span</code> e receberão os atributos de classe <code>wd-place-...</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-CSS-Utilities-Style#place" class="wd-icon-link" title="Sobre o atributo"></a></sup>. O container com os <i>slides</i> também será adcionado ao novo elemento de nível superior. Os identificadores dos <i>slides</i> não serão mais necessários. Após as modificações necessárias, a visualização ficará da seguinte forma:</p>
 
 		<div style="position: relative;" class="wd-b wd-size-xlarge wd-align-center">
 			<div id="slides3">
@@ -235,7 +235,7 @@
 
 		<p>Para concluir o presente tópico, será demonstrado como implementar ações para parar e acelerar a transição dos elementos.</p>
 
-		<p>Para implementar tais ações, será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <q>click</q>.</p>
+		<p>Para implementar tais ações, será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <i>click</i>.</p>
 
 		<p>Após algumas modificações e a construção de um navegador para manipular as ações, a visualização ficará da seguinte forma:</p>
 
@@ -266,7 +266,7 @@
 	<kbd>span <em>data-wd-data</em>=<q>wdSlide{1000}${#slides4}</q> class=<q>wd-icon-forward</q> </kbd><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
-		<p>Com esse último exemplo, encera-se o presente artigo.</p>
+		<p>Foi visto nesse artigo a aplicaição dos atributos <code>data-wd-action</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Action-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, <code>data-wd-slide</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Slide-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> e <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> e visto algumas formas de construção de um objeto para transição de blocos, tanto de forma manual como automática, sem a necessidade de <i>scripts</i> adicionais além das bibliotecas wd.</p>
 
 		<p class="wd-align-right">Willian Donadelli</p>
 

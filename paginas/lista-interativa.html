@@ -32,7 +32,7 @@
 
 		<h3>Elementos Básicos</h3>
 
-		<p>Para demonstrar a construção da lista interativa, será utilizado como exemplo a seleção de Unidades Federativas - UF e respectivos Municípios.</p>
+		<p>Para demonstrar a construção da lista interativa será utilizado como exemplo a seleção de Unidades Federativas - UF e seus respectivos Municípios.</p>
 
 		<p>Para evitar longas listas, as UF ficarão restritas à região sul do Brasil e apenas algumas cidades estarão disponíveis.</p>
 
@@ -64,7 +64,7 @@
 
 		<p>Para construção da lista interativa será utilizado o atributo <code>data-wd-repeat</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Repeat-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo executa a repetição dos elementos filhos, definidos como modelo, substituindo os valores das palavras chaves (<i>{{chave}}</i>) pelos valores dos atributos definidos no arquivo JSON.</p>
 
-		<p>Nesta demostração será construído um navegador para definir a UF a ser exibida e uma lista simples para exibir os respectivos municípios. A lista precisará ter um identificador (<code>id</code>) para ser possível referenciá-la:</p>
+		<p>Nesta demostração será construído um navegador, para definir a UF a ser exibida, e uma lista simples, para exibir os respectivos municípios. A lista terá um identificador (<code>id</code>) para que seja possível referenciá-la:</p>
 
 		<h5>UF</h5>		
 		<nav></nav>
@@ -79,7 +79,7 @@
 <kbd>h5</kbd>Municípios<kbd>/h5</kbd>
 <kbd>ul id=<q>municipios</q> </kbd><kbd>/ul</kbd></pre>
 
-		<p>Para carregar as listas, será necessário definir um elemento filho modelo, que servirá como molde para a construção de sua estrutura. Para fazer referências utilizando o atributo <code>data-wd-repeat</code>, usa-se chaves duplas com o nome do atributo do arquivo JSON. Por exemplo, caso queira fazer referência ao atributo <q>nome</q> do arquivo JSON, deveria referenciá-lo na forma <code>{{nome}}</code>.</p>
+		<p>Para carregar as listas será necessário definir um elemento modelo (filho), que servirá como molde para a construção de sua estrutura. Para fazer referências utilizando o atributo <code>data-wd-repeat</code>, usa-se chaves duplas com o nome do atributo do arquivo JSON. Por exemplo, caso queira fazer referência ao atributo <q>nome</q> do arquivo JSON, deverá referenciá-lo na forma <code>{{nome}}</code>.</p>
 
 		<p>Os modelos poderiam ser construídos da seguinte forma:</p>
 
@@ -127,7 +127,7 @@
 	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
 <kbd>/ul</kbd></pre>
 
-		<p>O próximo passo é definir a ação de carregar a lista das cidades ao clicar sobre uma UF no navegador. Para isso será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <q>click</q>.</p> 
+		<p>O próximo passo é definir a ação de carregar a lista das cidades ao clicar sobre uma UF no navegador. Para isso será utilizado o atributo <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>. Esse atributo altera o valor do atributo HTML <code>data</code> e reage ao evento <i>click</i>.</p> 
 
 		<p>Adicionando o citado atributo ao elemento modelo do navegador:</p>
 
@@ -152,9 +152,9 @@
 	<kbd>li</kbd><em>{{nome}}</em><kbd>/li</kbd>
 <kbd>/ul</kbd></pre>
 
-		<p>Observe que quando a página é carregada, antes de uma UF ser clicada no navegador, a lista fica exibindo o modelo (<cite>{{nome}}</cite>), o que é um pouco deselegante. Uma maneira de contornar tal situação seria utilizando o atributo <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> sobre uma das opções do navegador. Esse atributo promove um clique automático após o carregamento da página.</p>
+		<p>Observe que quando a página é carregada, antes de uma UF ser clicada no navegador, a lista fica exibindo o conteúdo textual do modelo (<cite>{{nome}}</cite>), o que é um pouco deselegante. Uma maneira de contornar tal situação é utilizando o atributo <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> sobre uma das opções do navegador. Esse atributo promove um clique automático após o carregamento da página.</p>
 
-		<p>Mas para utilizá-lo aqui, deveríamos colocar a informação de qual seria a escolha padrão no arquivo JSON e referenciar o respetivo atributo no modelo. Por exemplo, poderíamos acrescentar o atributo <q>inicial</q> no arquivo JSON e deixá-lo com valor <q>data-wd-click=<q></q></q> para a UF inicial e em branco para as demais UF:</p>
+		<p>Mas, para utilizá-lo aqui, seria preciso adicionar à estrutura JSON a informação da UF padrão (que já vem selecionada) e referenciar o atributo. Por exemplo, poderia ser acrescentado o atributo <q>inicial</q> ao arquivo JSON e deixá-lo com valor <q>data-wd-click=<q></q></q> para a UF padrão e em branco para as demais UF:</p>
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <cite>-- Arquivo JSON --</cite>
@@ -182,7 +182,7 @@
 	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios2}</q> <em>{{inicial}}</em> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
-		<p>Uma outra solução seria definir o atributo <code>data-wd-repeat</code> com a informação de um arquivo inexiste:</p>
+		<p>Uma outra solução seria definir o atributo <code>data-wd-repeat</code> com a informação de um arquivo inexistente:</p>
 
 		<h5>UF</h5>
 		<nav data-wd-repeat="get{json/UF.json}">
@@ -207,7 +207,7 @@
 
 		<h3>Utilizando um Script</h3>
 
-		<p>A situação apresentada até aqui geralmente é encontrada em formulários, através da utilização de combos (<code>select</code>). Modificando o exemplo anterior para se adequar a um formulário, tem-se o seguinte:</p>
+		<p>A situação apresentada até aqui geralmente é encontrada em formulários, através da utilização de combos (<code>select</code>). Adequando o exemplo anterior a um formulário, tem-se o seguinte:</p>
 
 		<form class="wd-block">
 			<label>UF</label>
@@ -234,7 +234,7 @@
 	<kbd>/select</kbd>
 <kbd>/form</kbd></pre>
 
-		<p>O formulário acima até que funciona, mas somente se os elementos <code>option</code> receberem um clique, pois é assim que o atributo <code>data-wd-data</code> funciona. Aa lista das cidades não será carregada se, por exemplo, mudarmos os valores de UF com o teclado.</p>
+		<p>O formulário acima pode até funcionar, mas somente se os elementos <code>option</code> receberem um clique, pois é assim que o atributo <code>data-wd-data</code> funciona. Aa lista das cidades não será carregada se, por exemplo, mudarmos os valores de UF com o teclado.</p>
 
 		<p>Para resolver isso, será utilizado um <i>script</i> que promoverá o carregamento dos municípios. Uma possível solução seria:</p>
 
@@ -309,11 +309,11 @@ wd$(<q>#uf5</q>).handler({
 
 		<h3>Forma Alternativa</h3>
 
-		<p>Em algumas situações não há jeito certo, existe aquele que não funciona e aquele que funciona, com mais ou menos erros. Portanto, métodos alternativos podem ser desenvolvidos sem precisar ficar preso a um único modelo.</p>
+		<p>Em algumas situações não há um modelo correto, existe aquele que não funciona e aquele que funciona, com mais ou menos erros. Portanto, métodos alternativos podem ser desenvolvidos sem precisar ficar preso a uma única estratégia.</p>
 
-		<p>Para elaborar um formulário alternativo àquele acima apresentado, será utilizado o atributo <code>data-wd-set</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Set-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que define determinados atributos dos elementos, e o atributo <code>data-wd-filter</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Filter-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que filtra os elementos de acordo com o texto pesquisado. O primeiro reage ao evento <q>click</q> e o segundo ao evento <q>input</q>.</p>
+		<p>Para elaborar um formulário alternativo ao apresentado, será utilizado o atributo <code>data-wd-set</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Set-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que define determinados atributos dos elementos, e o atributo <code>data-wd-filter</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Filter-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, que filtra os elementos de acordo com o texto pesquisado. O primeiro reage ao evento <i>click</i> e o segundo ao evento <i>input</i>.</p>
 
-		<p>Segue abaixo o modelo alternativo para selecionar UF e Município sem utilizar nenhum <i>script</i> adicional. O código está longo devido a forma como foram distribuídos os atributos dos elementos HTML, pensados na organização e visualização. Clique no campo abaixo:</p>
+		<p>Segue abaixo o modelo alternativo para selecionar UF e Município sem utilizar nenhum <i>script</i> adicional. O código está longo devido a forma como foram distribuídos os atributos dos elementos HTML, objetivando a organização e a visualização. Clique no campo abaixo:</p>
 
 		<form class="wd-block">
 
@@ -444,7 +444,7 @@ wd$(<q>#uf5</q>).handler({
 
 <kbd>/form</kbd></pre>
 
-		<p>Com esse último exemplo, encera-se o presente artigo.</p>
+		<p>Foi visto nesse artigo a aplicação dos atributos <code>data-wd-repeat</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Repeat-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, <code>data-wd-data</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Data-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, <code>data-wd-click</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Click-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup>, <code>data-wd-set</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Set-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> e <code>data-wd-filter</code><sup><a href="https://github.com/wdonadelli/wd/wiki/WD-ATTR-Filter-Tool" class="wd-icon-link" title="Sobre o atributo"></a></sup> e demonstrado algumas maneiras para construir dinamicamente um documento HTML.</p>
 
 		<p class="wd-align-right">Willian Donadelli</p>
 
