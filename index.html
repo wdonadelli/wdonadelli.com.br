@@ -20,10 +20,7 @@
 <body	data-wd-device="desktop{wd-center}" class="wd-bg-black" >
 
 	<header class="wd-bg-white">
-		<h1>
-			<span class="wd-icon-menu" data-wd-action="toggle-open{#menu}" >
-			<span class="wd-case-caps wd-i">WDonadelli</span>
-		</h1>
+		<h1 data-wd-action="toggle-open{#menu}" class="wd-icon-menu"> <span class="wd-case-caps wd-i">WDonadelli</span></h1>
 	</header>
 
 	<main class="wd-flyer wd-xxmargin-height-child">
@@ -37,7 +34,7 @@
 					data-wd-repeat="get{json/slides.json}"
 					data-wd-slide="5000"
 					data-wd-device="desktop{wd-size-xlarge}"
-					class="wd-b wd-radius wd-cloud"
+					class="wd-b wd-radius"
 					id="slides"
 				>
 					<a href="{{href}}" >
@@ -58,11 +55,9 @@
 
 		<section>
 
-			<h3><span class="wd-icon-extern" style="background: url(imagens/logo.png);"></span> YouTube - Biblioteca WD</h3>
+			<h3>Vídeos</h3>
 
-			<p>Clique <a href="#youtube" data-wd-data="wdLoad{get{paginas/youtube.html}}${#youtube}" >aqui</a> e veja uma lista de vídeos com demonstrações simples de uso da versão 2 (descontinuada) da biblioteca wd.</p>
-
-			<div class="wd-line" id="youtube" ></div>
+			<p>Clique <a href="paginas/videos.html">aqui</a> e veja a galeria de vídeos com demonstrações simples de uso da biblioteca wd.</p>
 
 		</section>
 
@@ -73,11 +68,8 @@
 
 		<div class="wd-flyer wd-bg-black" data-wd-device="desktop{wd-window-left}mobile{wd-window-full}" >
 
-			<header class="wd-bg-white">
-				<h2>
-					<span class="wd-icon-left" data-wd-action="close{#menu}"></span>
-					<span>Menu</span>
-				</h2>
+			<header class="wd-bg-white" data-wd-action="close{#menu}">
+				<h2 class="wd-icon-left"> Menu</h2>
 			</header>
 
 			<section>
@@ -86,6 +78,16 @@
 					<a href="{{href}}">{{frase1}} {{frase2}}</a>
 				</nav>
 			</section>
+
+			<section>
+				<h3>Vídeos</h3>
+				<nav data-wd-repeat="get{json/youtube.json}" class="wd-block" >
+					<a href="{{url}}">{{nome}}</a>
+				</nav>
+			</section>
+
+
+
 
 		</div>
 

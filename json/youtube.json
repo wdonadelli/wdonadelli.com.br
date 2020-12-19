@@ -1,0 +1,32 @@
+[
+	{
+		"nome":  "Ordenando DOM",
+		"url":   "https://youtu.be/DcuxvjcYz3U",
+		"frame": "https://www.youtube.com/embed/DcuxvjcYz3U"
+	},
+	{
+		"nome":  "Filtro de Busca",
+		"url":   "https://youtu.be/7A_kB5yXU7U",
+		"frame": "https://www.youtube.com/embed/7A_kB5yXU7U"
+	},
+	{
+		"nome":  "Ordenando Tabela",
+		"url":   "https://youtu.be/Zfy83ThpUjI",
+		"frame": "https://www.youtube.com/embed/Zfy83ThpUjI"
+	},
+	{
+		"nome":  "Estilo Responsivo",
+		"url":   "https://youtu.be/lBXmARk2Gp8",
+		"frame": "https://www.youtube.com/embed/lBXmARk2Gp8"
+	},
+	{
+		"nome":  "Carregando Páginas Externas",
+		"url":   "https://youtu.be/ixHghH22Bhs",
+		"frame": "https://www.youtube.com/embed/ixHghH22Bhs"
+	},
+	{
+		"nome":  "Construindo Blocos Dinamicamente",
+		"url":   "https://youtu.be/Up1B6ZwE89k",
+		"frame": "https://www.youtube.com/embed/Up1B6ZwE89k"
+	}
+]
