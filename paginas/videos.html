@@ -14,10 +14,6 @@
 		<link rel="shortcut icon" href="../imagens/logo.ico" />
 		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
 		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
-		<style>
-.video1 {width: 560px;}
-.video2 {width: 100%;}
-		</style>
 	</head>
 
 <body class="wd-bg-white" data-wd-device="desktop{wd-center}" >
@@ -31,11 +27,14 @@
 
 		<p>Veja abaixo demonstrações simples de uso da biblioteca JavaScript wd. A versão exemplificada nos vídeos é a v2, que já foi descontinuada, mas também se aplica à versão v3:</p>
 
-		<div data-wd-repeat="get{../json/youtube.json}" data-wd-device="mobile{wd-block}">
+		<div data-wd-repeat="get{../json/youtube.json}">
 
-			<h3>{{nome}}</h3>
+			<h3>
+				<span data-wd-device="phone{wd-overlook}" >{{nome}}</span>
+				<a href="{{url}}" data-wd-device="desktop{wd-overlook}tablet{wd-overlook}" >{{nome}}</a>
+			</h3>
 
-			<iframe width="560" height="315" src="{{frame}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+			<iframe width="560" height="315" data-wd-device="phone{wd-overlook}" src="{{frame}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
 			</div>
 
 		</div>
