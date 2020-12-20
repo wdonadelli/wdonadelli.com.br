@@ -13,13 +13,12 @@
 		<link rel="shortcut icon" href="imagens/logo.ico" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
-		<!link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
-		<link  href="../wd/v3/wd/wd.css" rel="stylesheet" />
+		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
 	</head>
 
-<body	data-wd-device="desktop{wd-center}" class="wd-bg-black" >
+<body	data-wd-device="desktop{wd-center}" class="wd-bg-basic" >
 
-	<header class="wd-bg-white">
+	<header class="wd-bg-black">
 		<h1 data-wd-action="toggle-open{#menu}" class="wd-icon-menu"> <span class="wd-case-caps wd-i">WDonadelli</span></h1>
 	</header>
 
@@ -68,21 +67,21 @@
 
 	<div class="wd-modal" id="menu">
 
-		<div class="wd-flyer wd-bg-black" data-wd-device="desktop{wd-window-left}mobile{wd-window-full}" >
+		<div class="wd-flyer wd-bg-white" data-wd-device="desktop{wd-window-left}mobile{wd-window-full}" >
 
-			<header class="wd-bg-white" data-wd-action="close{#menu}">
+			<header class="wd-bg-black" data-wd-action="close{#menu}">
 				<h2 class="wd-icon-left"> Menu</h2>
 			</header>
 
 			<section>
-				<h3>Artigos</h3>
+				<h3 class="wd-icon-news"> Artigos</h3>
 				<nav data-wd-repeat="get{json/slides.json}" class="wd-block" >
 					<a href="{{href}}">{{frase1}} {{frase2}}</a>
 				</nav>
 			</section>
 
 			<section>
-				<h3>Vídeos</h3>
+				<h3 class="wd-icon-tv"> Vídeos</h3>
 				<nav data-wd-repeat="get{json/youtube.json}" class="wd-block" >
 					<a href="{{url}}">{{nome}}</a>
 				</nav>
