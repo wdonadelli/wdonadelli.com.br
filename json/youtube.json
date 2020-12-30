@@ -2,31 +2,43 @@
 	{
 		"nome":  "Ordenando DOM",
 		"url":   "https://youtu.be/DcuxvjcYz3U",
-		"frame": "https://www.youtube.com/embed/DcuxvjcYz3U"
+		"frame": "https://www.youtube.com/embed/DcuxvjcYz3U",
+		"texto": "O vídeo demonstra como efetuar a ordenação de um lista utilizando o atributo <code>data-wd-sort</code> da biblioteca wd."
 	},
 	{
 		"nome":  "Filtro de Busca",
 		"url":   "https://youtu.be/7A_kB5yXU7U",
-		"frame": "https://www.youtube.com/embed/7A_kB5yXU7U"
+		"frame": "https://www.youtube.com/embed/7A_kB5yXU7U",
+		"texto": "O vídeo demonstra como filtrar os itens de uma lista utilizando o atributo <code>data-wd-filter</code> da biblioteca wd."
 	},
 	{
 		"nome":  "Ordenando Tabela",
 		"url":   "https://youtu.be/Zfy83ThpUjI",
-		"frame": "https://www.youtube.com/embed/Zfy83ThpUjI"
+		"frame": "https://www.youtube.com/embed/Zfy83ThpUjI",
+		"texto": "O vídeo demonstra como ordenar com um clique as colunas de uma tabela utilizando o atributo <code>data-wd-sort-col</code> da biblioteca wd."
 	},
 	{
 		"nome":  "Estilo Responsivo",
 		"url":   "https://youtu.be/lBXmARk2Gp8",
-		"frame": "https://www.youtube.com/embed/lBXmARk2Gp8"
+		"frame": "https://www.youtube.com/embed/lBXmARk2Gp8",
+		"texto": "O vídeo demonstra como construir um estilo responsivo utilizando o atributo <code>data-wd-device</code> da biblioteca wd."
 	},
 	{
 		"nome":  "Carregando Páginas Externas",
 		"url":   "https://youtu.be/ixHghH22Bhs",
-		"frame": "https://www.youtube.com/embed/ixHghH22Bhs"
+		"frame": "https://www.youtube.com/embed/ixHghH22Bhs",
+		"texto": "O vídeo demonstra como carregar uma página externa de forma assíncrona utilizando o atributo <code>data-wd-load</code> da biblioteca wd."
 	},
 	{
 		"nome":  "Construindo Blocos Dinamicamente",
 		"url":   "https://youtu.be/Up1B6ZwE89k",
-		"frame": "https://www.youtube.com/embed/Up1B6ZwE89k"
+		"frame": "https://www.youtube.com/embed/Up1B6ZwE89k",
+		"texto": "O vídeo demonstra como construir elementos dinamicamente a partir de um arquivo JSON utilizando o atributo <code>data-wd-repeat</code> da biblioteca wd."
+	},
+	{
+		"nome":  "Aplicando Máscaras",
+		"url":   "https://youtu.be/R7oTG-KK9yE",
+		"frame": "https://www.youtube.com/embed/R7oTG-KK9yE",
+		"texto": "O vídeo demonstra como construir máscaras a partir de expressões regulares utilizando o atributo <code>data-wd-mask</code> da biblioteca wd."
 	}
 ]
