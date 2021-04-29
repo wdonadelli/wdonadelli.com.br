@@ -10,10 +10,10 @@
 		<meta name="description" content="Como contruir uma lista interativa com a biblioteca wd" />
 		<meta name="rating" content="general" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="icon" href="../imagens/logo.ico" />
-		<link rel="shortcut icon" href="../imagens/logo.ico" />
-		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
-		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
+		<link rel="icon" href="../_biblioteca/logo.ico" />
+		<link rel="shortcut icon" href="../_biblioteca/logo.ico" />
+		<script src="../_biblioteca/wd.js"></script>
+		<link  href="../_biblioteca/wd.css" rel="stylesheet" />
 	</head>
 
 <body data-wd-device="desktop{wd-center}" class="wd-bg-basic">
@@ -40,25 +40,25 @@
 
 		<h4>Unidades Federativas - UF</h4>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/UF.json}" ></pre>
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{UF.json}" ></pre>
 
 		<h4>Paraná - PR</h4>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/PR.json}" ></pre>
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{PR.json}" ></pre>
 
-		<div class="wd-align-right"><cite>json/PR.json</cite></div>
+		<div class="wd-align-right"><cite>PR.json</cite></div>
 
 		<h4>Santa Catarina - SC</h4>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/SC.json}" ></pre>
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{SC.json}" ></pre>
 
-		<div class="wd-align-right"><cite>json/SC.json</cite></div>
+		<div class="wd-align-right"><cite>SC.json</cite></div>
 
 		<h4>Rio Grande do Sul - RS</h4>
 
-		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{json/RS.json}" ></pre>
+		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud" data-wd-load="get{RS.json}" ></pre>
 
-		<div class="wd-align-right"><cite>json/RS.json</cite></div>
+		<div class="wd-align-right"><cite>RS.json</cite></div>
 
 		<h3>Utilizando o Atributo</h3>
 
@@ -107,7 +107,7 @@
 		<p>Inicialmente será construído o navegador de UF a partir do uso do atributo <code>data-wd-repeat</code>:</p>
 
 		<h5>UF</h5>
-		<nav data-wd-repeat="get{json/UF.json}">
+		<nav data-wd-repeat="get{UF.json}">
 			<span>{{nome}}-{{sigla}}</span>
 		</nav>
 
@@ -118,7 +118,7 @@
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>h5</kbd>UF<kbd>/h5</kbd>
-<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{UF.json}</q></kbd>
 	<kbd>span</kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd>
 
@@ -132,7 +132,7 @@
 		<p>Adicionando o citado atributo ao elemento modelo do navegador:</p>
 
 		<h5>UF</h5>
-		<nav data-wd-repeat="get{json/UF.json}">
+		<nav data-wd-repeat="get{UF.json}">
 			<span data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios2}" >{{nome}}-{{sigla}}</span>
 		</nav>
 
@@ -143,7 +143,7 @@
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>h5</kbd>UF<kbd>/h5</kbd>
-<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{UF.json}</q></kbd>
 	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios2}</q> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd>
 
@@ -163,13 +163,13 @@
 	{
 		<q>sigla</q>: <q>PR</q>,
 		<q>nome</q>: <q>Paraná</q>,
-		<q>municipios</q>: <q>json/PR.json</q>",
+		<q>municipios</q>: <q>PR.json</q>",
 		<q>inicial</q>: <q>data-wd-click=<q></q></q>
 	},
 	{
 		<q>sigla</q>: <q>SC</q>,
 		<q>nome</q>: <q>Santa Catarina</q>,
-		<q>municipios</q>: <q>json/SC.json</q>,
+		<q>municipios</q>: <q>SC.json</q>,
 		<q>inicial</q>: <q></q>
 	},
 	...
@@ -178,14 +178,14 @@
 <cite>-- HTML --</cite>
 
 <kbd>h5</kbd>UF<kbd>/h5</kbd>
-<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{UF.json}</q></kbd>
 	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios2}</q> <em>{{inicial}}</em> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd></pre>
 
 		<p>Uma outra solução seria definir o atributo <code>data-wd-repeat</code> com a informação de um arquivo inexistente:</p>
 
 		<h5>UF</h5>
-		<nav data-wd-repeat="get{json/UF.json}">
+		<nav data-wd-repeat="get{UF.json}">
 			<span data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios3}">{{nome}}-{{sigla}}</span>
 		</nav>
 
@@ -196,7 +196,7 @@
 
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>h5</kbd>UF<kbd>/h5</kbd>
-<kbd>nav <em>data-wd-repeat</em>=<q>get{json/UF.json}</q></kbd>
+<kbd>nav <em>data-wd-repeat</em>=<q>get{UF.json}</q></kbd>
 	<kbd>span <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios3}</q></kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/span</kbd>
 <kbd>/nav</kbd>
 
@@ -211,7 +211,7 @@
 
 		<form class="wd-block">
 			<label>UF</label>
-			<select data-wd-repeat="get{json/UF.json}" >
+			<select data-wd-repeat="get{UF.json}" >
 				<option data-wd-data="wdRepeat{get{ {{municipios}} }}${#municipios4}">{{nome}}-{{sigla}}</option>
 			</select>
 
@@ -224,7 +224,7 @@
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>form class=<q>wd-block</q></kbd>
 	<kbd>label</kbd>UF<kbd>/label</kbd>
-	<kbd>select <em>data-wd-repeat</em>=<q>get{json/UF.json}</q> </kbd>
+	<kbd>select <em>data-wd-repeat</em>=<q>get{UF.json}</q> </kbd>
 		<kbd>option <em>data-wd-data</em>=<q>wdRepeat{get{ {{municipios}} }}${#municipios4}</q></kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/option</kbd>
 	<kbd>/select</kbd>
 
@@ -256,12 +256,12 @@ wd$(<q>#uf5</q>).handler({
 
 		<form class="wd-block">
 			<label>UF</label>
-			<select id="uf5" data-wd-repeat="get{json/UF.json}" >
+			<select id="uf5" data-wd-repeat="get{UF.json}" >
 				<option value="{{municipios}}" >{{nome}}-{{sigla}}</option>
 			</select>
 
 			<label>Municípios</label>
-			<select id="municipios5" data-wd-repeat="get{json/PR.json}" >
+			<select id="municipios5" data-wd-repeat="get{PR.json}" >
 				<option>{{nome}}</option>
 			</select>
 		</form>
@@ -283,12 +283,12 @@ wd$("#uf5").handler({
 		<pre class="wd-padding wd-radius wd-code wd-margin wd-cloud">
 <kbd>form class=<q>wd-block</q></kbd>
 	<kbd>label</kbd>UF<kbd>/label</kbd>
-	<kbd>select id=<q>uf5</q> <em>data-wd-repeat</em>=<q>get{json/UF.json}</q> </kbd>
+	<kbd>select id=<q>uf5</q> <em>data-wd-repeat</em>=<q>get{UF.json}</q> </kbd>
 		<kbd>option value=<q>{{municipios}}</q> </kbd><em>{{nome}}</em>-<em>{{sigla}}</em><kbd>/option</kbd>
 	<kbd>/select</kbd>
 
 	<kbd>label</kbd>Municípios<kbd>/label</kbd>
-	<kbd>select id=<q>municipios5</q> <em>data-wd-repeat</em>=<q>get{json/PR.json}</q> </kbd>
+	<kbd>select id=<q>municipios5</q> <em>data-wd-repeat</em>=<q>get{PR.json}</q> </kbd>
 		<kbd>option</kbd><em>{{nome}}</em><kbd>/option</kbd>
 	<kbd>/select</kbd>
 <kbd>/form</kbd>
@@ -329,7 +329,7 @@ wd$(<q>#uf5</q>).handler({
 			<div
 				id="listaUF"
 				class="wd-overlook"
-				data-wd-repeat="get{json/UF.json}"
+				data-wd-repeat="get{UF.json}"
 			>
 				<div 
 					class="wd-padding wd-border-bottom wd-upon-enter wd-bg-black"
@@ -394,7 +394,7 @@ wd$(<q>#uf5</q>).handler({
 	<kbd>div
 		id=<q>listaUF</q>
 		class=<q>wd-overlook</q>
-		<em>data-wd-repeat</em>=<q>get{json/UF.json}</q>
+		<em>data-wd-repeat</em>=<q>get{UF.json}</q>
 	</kbd>
 		<kbd>div 
 			class=<q>wd-padding wd-border-bottom wd-upon-enter wd-bg-black</q>
@@ -450,7 +450,7 @@ wd$(<q>#uf5</q>).handler({
 
 	</main>
 
-	<footer data-wd-load="get{rodape.html}" class="wd-bg-white wd-buddy-bottom"><footer>
+	<div data-wd-load="get{../_biblioteca/rodape.html}" data-wd-device="desktop{wd-window-right wd-open}" ></div>
 
 </body>
 </html>

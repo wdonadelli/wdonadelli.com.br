@@ -2,16 +2,16 @@
 	{
 		"sigla": "PR",
 		"nome": "Paraná",
-		"municipios": "json/PR.json"
+		"municipios": "PR.json"
 	},
 	{
 		"sigla": "SC",
 		"nome": "Santa Catarina",
-		"municipios": "json/SC.json"
+		"municipios": "SC.json"
 	},
 	{
 		"sigla": "RS",
 		"nome": "Rio Grande do Sul",
-		"municipios": "json/RS.json"
+		"municipios": "RS.json"
 	}
 ]

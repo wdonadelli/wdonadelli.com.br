@@ -10,10 +10,10 @@
 		<meta name="description" content="Galeria de Vídeos" />
 		<meta name="rating" content="general" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="icon" href="../imagens/logo.ico" />
-		<link rel="shortcut icon" href="../imagens/logo.ico" />
-		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
-		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
+		<link rel="icon" href="../_biblioteca/logo.ico" />
+		<link rel="shortcut icon" href="../_biblioteca/logo.ico" />
+		<script src="../_biblioteca/wd.js"></script>
+		<link  href="../_biblioteca/wd.css" rel="stylesheet" />
 	</head>
 
 <body class="wd-bg-basic" data-wd-device="desktop{wd-center}" >
@@ -27,7 +27,7 @@
 
 		<p>Veja abaixo demonstrações simples de uso da biblioteca JavaScript wd. A versão exemplificada nos vídeos é a v2, que já foi descontinuada, mas também se aplica à versão v3:</p>
 
-		<div data-wd-repeat="get{../json/youtube.json}">
+		<div data-wd-repeat="get{youtube.json}">
 
 			<h3>
 				<span data-wd-device="phone{wd-overlook}" >{{nome}}</span>
@@ -41,7 +41,7 @@
 
 	</main>
 
-	<footer data-wd-load="get{rodape.html}" class="wd-bg-white wd-buddy-bottom"><footer>
+	<div data-wd-load="get{../_biblioteca/rodape.html}" data-wd-device="desktop{wd-window-right wd-open}" ></div>
 
 </body>
 

@@ -9,16 +9,16 @@
 		<meta name="author" content="Willian Donadelli"/>
 		<meta name="description" content="WDonadelli.com.br"/>
 		<meta name="rating" content="general" />
-		<link rel="icon" href="imagens/logo.ico" />
-		<link rel="shortcut icon" href="imagens/logo.ico" />
+		<link rel="icon" href="_biblioteca/logo.ico" />
+		<link rel="shortcut icon" href="_biblioteca/logo.ico" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="https://wdonadelli.github.io/wd/v3/wd/wd.js"></script>
-		<link  href="https://wdonadelli.github.io/wd/v3/wd/wd.css" rel="stylesheet" />
+		<script src="_biblioteca/wd.js"></script>
+		<link  href="_biblioteca/wd.css" rel="stylesheet" />
 	</head>
 
-<body	data-wd-device="desktop{wd-center}" class="wd-bg-basic" >
+<body	data-wd-device="desktop{wd-center}" class="wd-bg-blue" >
 
-	<header class="wd-bg-black">
+	<header>
 		<h1 data-wd-action="toggle-open{#menu}" class="wd-icon-menu"> <span class="wd-case-caps wd-i">WDonadelli</span></h1>
 	</header>
 
@@ -30,7 +30,7 @@
 
 			<article style="position: relative;" class="wd-border">
 				<div
-					data-wd-repeat="get{json/slides.json}"
+					data-wd-repeat="get{_json/slides.json}"
 					data-wd-slide="5000"
 					data-wd-device="desktop{wd-size-xlarge}"
 					class="wd-b wd-radius"
@@ -58,10 +58,18 @@
 
 			<p>Veja a galeria de vídeos com demonstrações simples de uso da biblioteca wd.</p>
 
-			<p>Clique <a href="paginas/videos.html">aqui</a> para acessar.</p>
+			<p>Clique <a href="videos/">aqui</a> para acessar.</p>
 
 		</section>
 
+		<div class="wd-size-xlarge-child wd-padding wd-align-right">
+			<a href="../"><img src="https://github.githubassets.com/favicons/favicon.svg" alt="Ícone do GitHub"  class="wd-icon-custom"/></a>
+			<span data-wd-shared="facebook"></span>
+			<span data-wd-shared="twitter"></span>
+			<span data-wd-shared="linkedin"></span>
+			<span data-wd-shared="reddit"></span>
+			<span data-wd-shared="evernote"></span>
+		</div>
 
 	</main>
 
@@ -75,22 +83,20 @@
 
 			<section>
 				<h3 class="wd-icon-news"> Artigos</h3>
-				<nav data-wd-repeat="get{json/slides.json}" class="wd-block" >
+				<nav data-wd-repeat="get{_json/slides.json}" class="wd-block" >
 					<a href="{{href}}">{{frase1}} {{frase2}}</a>
 				</nav>
 			</section>
 
 			<section>
 				<h3 class="wd-icon-tv"> Vídeos</h3>
-				<nav data-wd-repeat="get{json/youtube.json}" class="wd-block" >
-					<a href="{{url}}" title="{{texto}}">{{nome}}</a>
+				<nav data-wd-repeat="get{videos/youtube.json}" class="wd-block" >
+					<a href="{{url}}" title="{{texto}}" target="_blank">{{nome}}</a>
 				</nav>
 			</section>
 		</div>
 
 	</div>
-
-	<footer data-wd-load="get{paginas/rodape.html}" class="wd-bg-white" ><footer>
 
 </body>
 </html>
